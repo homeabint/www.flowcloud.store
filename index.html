@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>古堡留聲機 - 自定義背景版</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>古堡留聲機 - 手機優化最終版</title>
     <style>
-        /* --- 視覺風格：古老城堡 --- */
+        /* --- 全域佈局與背景 --- */
         body {
             margin: 0;
             padding: 0;
@@ -15,37 +15,38 @@
             align-items: center;
             min-height: 100vh;
             
-            /* --- 背景路徑修正 --- */
-            /* 使用你指定的 image 資料夾與 1.png */
+            /* 背景圖片路徑：image/1.png */
             background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), 
                         url('image/1.png');
-            
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             
             color: #4a3728;
-            font-family: "Times New Roman", "微軟正黑體", "Microsoft JhengHei", serif;
-            overflow: hidden;
+            font-family: "Times New Roman", "微軟正黑體", serif;
+            overflow-x: hidden;
         }
 
-        /* 播放器容器 */
+        /* 播放器容器：支援彈性寬度 */
         .player-container {
             background: #c3a683; 
             background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-            padding: 30px;
+            padding: 20px;
             border-radius: 5px;
-            box-shadow: 0 0 80px rgba(0,0,0,0.9);
-            border: 8px double #5d4037;
+            box-shadow: 0 0 50px rgba(0,0,0,0.8);
+            border: 6px double #5d4037;
             text-align: center;
-            width: 350px;
-            position: relative;
-            z-index: 1;
+            
+            /* 移動端關鍵設定 */
+            width: 90%;
+            max-width: 380px;
+            box-sizing: border-box;
+            margin: 20px auto;
         }
 
         .vintage-frame {
             border: 1px solid #5d4037;
-            padding: 20px;
+            padding: 15px;
         }
 
         h2 {
@@ -53,13 +54,14 @@
             letter-spacing: 2px;
             margin: 10px 0;
             color: #3e2723;
+            font-size: 1.4em;
         }
 
-        /* 播放清單樣式 */
+        /* 播放清單 */
         .playlist {
             margin-top: 15px;
             text-align: left;
-            max-height: 180px;
+            max-height: 160px;
             overflow-y: auto;
             border: 1px inset #5d4037;
             background: rgba(0, 0, 0, 0.05);
@@ -68,7 +70,7 @@
 
         .playlist-item {
             cursor: pointer;
-            padding: 8px;
+            padding: 10px 8px; /* 增加手機點擊範圍 */
             border-bottom: 1px solid rgba(93, 64, 55, 0.2);
             font-size: 0.9em;
             transition: 0.2s;
@@ -81,28 +83,32 @@
             background: rgba(93, 64, 55, 0.15); 
         }
 
-        /* 控制按鈕 */
-        .controls { margin: 15px 0; }
+        /* 控制按鈕：手機端平鋪排列 */
+        .controls { 
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+            margin: 15px 0; 
+        }
+
         .castle-btn {
             background: #5d4037;
             color: #c3a683;
             border: 1px solid #3e2723;
-            padding: 8px 15px;
-            margin: 5px;
+            padding: 10px 0;
+            flex: 1; /* 平均分配按鈕寬度 */
             cursor: pointer;
             font-family: inherit;
             font-weight: bold;
-            transition: 0.3s;
+            font-size: 0.9em;
         }
 
-        .castle-btn:hover {
-            background: #3e2723;
-            box-shadow: 0 0 8px #8d6e63;
-        }
+        .castle-btn:active { transform: scale(0.95); }
 
-        /* 進度條 */
+        /* 進度條樣式 */
         input[type="range"] {
             width: 100%;
+            height: 8px;
             cursor: pointer;
             accent-color: #5d4037;
         }
@@ -120,7 +126,7 @@
 <div class="player-container">
     <div class="vintage-frame">
         <h2 id="song-title">古堡秘藏</h2>
-        <p id="song-artist" style="font-size: 0.8em;">GitHub 館藏系列</p>
+        <p id="song-artist" style="font-size: 0.8em; margin-bottom: 5px;">移動端優化版</p>
         
         <audio id="audio-player"></audio>
 
@@ -140,7 +146,7 @@
 </div>
 
 <script>
-    // 確認：AI 與 Music 之間為 1 個空格
+    // 確認：AI 與 Music 之間只有 1 個空格
     const songs = [
         { title: "第一首", file: "Suno AI Music.mp3" },
         { title: "第二首", file: "Suno AI Music_1.mp3" },
@@ -172,6 +178,7 @@
 
     function loadSong(index) {
         currentSongIndex = index;
+        // 路徑：music/資料夾 (小寫)
         const filePath = `music/${songs[index].file}`;
         audio.src = encodeURI(filePath); 
         
@@ -184,8 +191,7 @@
             playPauseBtn.textContent = '暫停';
             statusText.innerText = "正在演奏中...";
         }).catch(e => {
-            statusText.innerText = "讀取失敗：請檢查路徑或檔名";
-            console.error("播放錯誤:", e);
+            statusText.innerText = "讀取失敗：請檢查 music/ 路徑與檔名";
         });
     }
 
