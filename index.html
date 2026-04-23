@@ -4,121 +4,49 @@
     <meta charset="UTF-8">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>古堡留聲機 - 手機優化最終版</title>
+    <title>古堡留聲機 - 訪客留言版</title>
     <style>
-        /* --- 全域佈局與背景 --- */
+        /* --- 全域佈局 --- */
         body {
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            
-            /* 背景圖片路徑：image/1.png */
-            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), 
-                        url('image/1.png');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            
-            color: #4a3728;
-            font-family: "Times New Roman", "微軟正黑體", serif;
+            margin: 0; padding: 20px 0; display: flex; flex-direction: column; align-items: center; min-height: 100vh;
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('image/1.png');
+            background-size: cover; background-position: center; background-attachment: fixed;
+            color: #4a3728; font-family: "Times New Roman", "微軟正黑體", serif;
             overflow-x: hidden;
         }
 
-        /* 播放器容器：支援彈性寬度 */
+        /* 播放器容器 */
         .player-container {
-            background: #c3a683; 
-            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
-            padding: 20px;
-            border-radius: 5px;
-            box-shadow: 0 0 50px rgba(0,0,0,0.8);
-            border: 6px double #5d4037;
-            text-align: center;
-            
-            /* 移動端關鍵設定 */
-            width: 90%;
-            max-width: 380px;
-            box-sizing: border-box;
-            margin: 20px auto;
+            background: #c3a683; background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            padding: 20px; border-radius: 5px; box-shadow: 0 0 50px rgba(0,0,0,0.8); border: 6px double #5d4037; text-align: center;
+            width: 90%; max-width: 380px; box-sizing: border-box; margin-bottom: 25px;
         }
 
-        .vintage-frame {
-            border: 1px solid #5d4037;
-            padding: 15px;
+        /* 留言區容器 - 寬度稍微放寬一點方便閱讀留言 */
+        .comment-container {
+            background: rgba(195, 166, 131, 0.95); background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            padding: 20px; border-radius: 5px; border: 4px double #5d4037;
+            width: 90%; max-width: 500px; box-sizing: border-box; margin-bottom: 50px;
+            box-shadow: 0 0 30px rgba(0,0,0,0.5);
         }
 
-        h2 {
-            font-variant: small-caps;
-            letter-spacing: 2px;
-            margin: 10px 0;
-            color: #3e2723;
-            font-size: 1.4em;
-        }
+        .vintage-frame { border: 1px solid #5d4037; padding: 15px; }
+        h2, h3 { font-variant: small-caps; letter-spacing: 2px; margin: 10px 0; color: #3e2723; }
+        
+        /* 播放清單樣式 */
+        .playlist { margin-top: 15px; text-align: left; max-height: 140px; overflow-y: auto; border: 1px inset #5d4037; background: rgba(0, 0, 0, 0.05); padding: 5px; }
+        .playlist-item { cursor: pointer; padding: 10px 8px; border-bottom: 1px solid rgba(93, 64, 55, 0.2); font-size: 0.9em; }
+        .playlist-item.active { font-weight: bold; color: #8d1c1c; background: rgba(93, 64, 55, 0.15); }
+        
+        /* 控制按鈕 */
+        .controls { display: flex; justify-content: center; gap: 8px; margin: 15px 0; }
+        .castle-btn { background: #5d4037; color: #c3a683; border: 1px solid #3e2723; padding: 10px 0; flex: 1; cursor: pointer; font-weight: bold; }
+        input[type="range"] { width: 100%; accent-color: #5d4037; }
 
-        /* 播放清單 */
-        .playlist {
-            margin-top: 15px;
-            text-align: left;
-            max-height: 160px;
-            overflow-y: auto;
-            border: 1px inset #5d4037;
-            background: rgba(0, 0, 0, 0.05);
-            padding: 5px;
-        }
-
-        .playlist-item {
-            cursor: pointer;
-            padding: 10px 8px; /* 增加手機點擊範圍 */
-            border-bottom: 1px solid rgba(93, 64, 55, 0.2);
-            font-size: 0.9em;
-            transition: 0.2s;
-        }
-
-        .playlist-item:hover { background: rgba(93, 64, 55, 0.1); }
-        .playlist-item.active { 
-            font-weight: bold; 
-            color: #8d1c1c; 
-            background: rgba(93, 64, 55, 0.15); 
-        }
-
-        /* 控制按鈕：手機端平鋪排列 */
-        .controls { 
-            display: flex;
-            justify-content: center;
-            gap: 8px;
-            margin: 15px 0; 
-        }
-
-        .castle-btn {
-            background: #5d4037;
-            color: #c3a683;
-            border: 1px solid #3e2723;
-            padding: 10px 0;
-            flex: 1; /* 平均分配按鈕寬度 */
-            cursor: pointer;
-            font-family: inherit;
-            font-weight: bold;
-            font-size: 0.9em;
-        }
-
-        .castle-btn:active { transform: scale(0.95); }
-
-        /* 進度條樣式 */
-        input[type="range"] {
-            width: 100%;
-            height: 8px;
-            cursor: pointer;
-            accent-color: #5d4037;
-        }
-
-        .status-text {
-            font-style: italic;
-            font-size: 0.8em;
-            margin-top: 10px;
-            color: #5d4037;
-        }
+        .status-text { font-style: italic; font-size: 0.8em; margin-top: 10px; color: #5d4037; }
+        
+        /* Giscus 容器微調：確保留言板與古堡風格融合 */
+        .giscus { margin-top: 20px; }
     </style>
 </head>
 <body>
@@ -126,27 +54,48 @@
 <div class="player-container">
     <div class="vintage-frame">
         <h2 id="song-title">古堡秘藏</h2>
-        <p id="song-artist" style="font-size: 0.8em; margin-bottom: 5px;">移動端優化版</p>
-        
+        <p style="font-size: 0.7em; margin-top: -5px;">MOBILE OPTIMIZED</p>
         <audio id="audio-player"></audio>
-
-        <div class="progress-container">
-            <input type="range" id="progress-bar" value="0">
-        </div>
-
+        <div class="progress-container"><input type="range" id="progress-bar" value="0"></div>
         <div class="controls">
             <button id="prev" class="castle-btn">«</button>
             <button id="play-pause" class="castle-btn">開始</button>
             <button id="next" class="castle-btn">»</button>
         </div>
-
         <div class="playlist" id="playlist"></div>
         <p id="status" class="status-text">準備演奏</p>
     </div>
 </div>
 
+<div class="comment-container">
+    <div class="vintage-frame">
+        <h3>訪客留聲板</h3>
+        <p style="font-size: 0.8em; font-style: italic; color: #5d4037; margin-bottom: 15px;">
+            您的回響將留存於古堡討論區中...
+        </p>
+
+        <div class="giscus"></div>
+
+        <script src="https://giscus.app/client.js"
+                data-repo="homeabint/www.flowcloud.store"
+                data-repo-id="R_kgDOQ6kWwg"
+                data-category="Announcements"
+                data-category-id="DIC_kwDOQ6kWws4C7jmP"
+                data-mapping="pathname"
+                data-strict="0"
+                data-reactions-enabled="1"
+                data-emit-metadata="0"
+                data-input-position="bottom"
+                data-theme="preferred_color_scheme"
+                data-lang="zh-TW"
+                crossorigin="anonymous"
+                async>
+        </script>
+    </div>
+</div>
+
 <script>
-    // 確認：AI 與 Music 之間只有 1 個空格
+    // --- 音樂撥放邏輯 ---
     const songs = [
         { title: "第一首", file: "Suno AI Music.mp3" },
         { title: "第二首", file: "Suno AI Music_1.mp3" },
@@ -178,20 +127,14 @@
 
     function loadSong(index) {
         currentSongIndex = index;
-        // 路徑：music/資料夾 (小寫)
-        const filePath = `music/${songs[index].file}`;
-        audio.src = encodeURI(filePath); 
-        
+        audio.src = encodeURI(`music/${songs[index].file}`);
         songTitleText.innerText = songs[index].title;
-        
-        const items = document.querySelectorAll('.playlist-item');
-        items.forEach((el, i) => el.classList.toggle('active', i === index));
-
+        document.querySelectorAll('.playlist-item').forEach((el, i) => el.classList.toggle('active', i === index));
         audio.play().then(() => {
             playPauseBtn.textContent = '暫停';
             statusText.innerText = "正在演奏中...";
-        }).catch(e => {
-            statusText.innerText = "讀取失敗：請檢查 music/ 路徑與檔名";
+        }).catch(() => {
+            statusText.innerText = "讀取失敗：請檢查路徑";
         });
     }
 
@@ -208,15 +151,8 @@
 
     document.getElementById('next').onclick = () => loadSong((currentSongIndex + 1) % songs.length);
     document.getElementById('prev').onclick = () => loadSong((currentSongIndex - 1 + songs.length) % songs.length);
-
-    audio.ontimeupdate = () => {
-        if (audio.duration) progressBar.value = (audio.currentTime / audio.duration) * 100;
-    };
-
-    progressBar.oninput = () => {
-        audio.currentTime = (progressBar.value / 100) * audio.duration;
-    };
-
+    audio.ontimeupdate = () => { if (audio.duration) progressBar.value = (audio.currentTime / audio.duration) * 100; };
+    progressBar.oninput = () => { audio.currentTime = (progressBar.value / 100) * audio.duration; };
     audio.onended = () => document.getElementById('next').onclick();
 
     init();
