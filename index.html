@@ -2,10 +2,11 @@
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>古堡密藏 - 沉浸式音樂館</title>
+    <title>古堡留聲機 - 修正編碼版</title>
     <style>
-        /* --- 全域樣式與自定義背景 --- */
+        /* --- 視覺風格：古老城堡 --- */
         body {
             margin: 0;
             padding: 0;
@@ -14,31 +15,29 @@
             align-items: center;
             min-height: 100vh;
             
-            /* 自定義背景圖片：目前使用一張神秘城堡的線上圖片 */
-            /* 如果你有自己的圖片，請將網址替換掉 */
+            /* 背景圖片與暗色遮罩 */
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
                         url('https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=1600&q=80');
-            
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
             
+            /* 字體設定：優先使用襯線體營造古風，並加入微軟正黑體備援 */
             color: #4a3728;
-            font-family: "Times New Roman", serif;
-            overflow: hidden; /* 防止出現捲軸 */
+            font-family: "Times New Roman", "微軟正黑體", "Microsoft JhengHei", serif;
+            overflow: hidden;
         }
 
-        /* 播放器主體：羊皮紙質感 */
+        /* 播放器容器 */
         .player-container {
             background: #c3a683; 
             background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
             padding: 30px;
-            border-radius: 3px;
-            box-shadow: 0 0 100px rgba(0,0,0,0.8);
-            border: 10px double #5d4037;
+            border-radius: 5px;
+            box-shadow: 0 0 80px rgba(0,0,0,0.9);
+            border: 8px double #5d4037;
             text-align: center;
-            width: 380px;
-            z-index: 10;
+            width: 350px;
         }
 
         .vintage-frame {
@@ -48,29 +47,28 @@
 
         h2 {
             font-variant: small-caps;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             margin: 10px 0;
             color: #3e2723;
-            text-shadow: 1px 1px 1px rgba(255,255,255,0.2);
         }
 
-        /* 播放清單 */
+        /* 播放清單樣式 */
         .playlist {
             margin-top: 15px;
             text-align: left;
-            max-height: 180px;
+            max-height: 150px;
             overflow-y: auto;
             border: 1px inset #5d4037;
-            background: rgba(0, 0, 0, 0.08);
+            background: rgba(0, 0, 0, 0.05);
             padding: 5px;
         }
 
         .playlist-item {
             cursor: pointer;
-            padding: 8px 12px;
+            padding: 8px;
             border-bottom: 1px solid rgba(93, 64, 55, 0.2);
             font-size: 0.9em;
-            transition: 0.3s;
+            transition: 0.2s;
         }
 
         .playlist-item:hover { background: rgba(93, 64, 55, 0.1); }
@@ -81,24 +79,22 @@
         }
 
         /* 控制按鈕 */
-        .controls { margin: 20px 0; }
+        .controls { margin: 15px 0; }
         .castle-btn {
             background: #5d4037;
             color: #c3a683;
             border: 1px solid #3e2723;
-            padding: 8px 18px;
+            padding: 8px 15px;
             margin: 5px;
             cursor: pointer;
             font-family: inherit;
             font-weight: bold;
             transition: 0.3s;
-            box-shadow: 2px 2px 5px rgba(0,0,0,0.3);
         }
 
         .castle-btn:hover {
             background: #3e2723;
-            box-shadow: 0 0 10px #8d6e63;
-            transform: scale(1.05);
+            box-shadow: 0 0 8px #8d6e63;
         }
 
         /* 進度條 */
@@ -108,17 +104,20 @@
             accent-color: #5d4037;
         }
 
-        /* 滾動條美化 */
-        .playlist::-webkit-scrollbar { width: 4px; }
-        .playlist::-webkit-scrollbar-thumb { background: #5d4037; }
+        .status-text {
+            font-style: italic;
+            font-size: 0.8em;
+            margin-top: 10px;
+            color: #5d4037;
+        }
     </style>
 </head>
 <body>
 
 <div class="player-container">
     <div class="vintage-frame">
-        <h2 id="song-title">古堡清單</h2>
-        <p id="song-artist" style="font-size: 0.8em; margin-bottom: 15px;">GitHub 館藏系列</p>
+        <h2 id="song-title">古堡秘藏</h2>
+        <p id="song-artist" style="font-size: 0.8em;">讀取 GitHub 馆藏中...</p>
         
         <audio id="audio-player"></audio>
 
@@ -128,20 +127,17 @@
 
         <div class="controls">
             <button id="prev" class="castle-btn">«</button>
-            <button id="play-pause" class="castle-btn">開始演奏</button>
+            <button id="play-pause" class="castle-btn">開始</button>
             <button id="next" class="castle-btn">»</button>
         </div>
 
-        <div class="playlist" id="playlist">
-            </div>
-        
-        <p id="status" style="font-style: italic; font-size: 0.8em; margin-top: 15px;">請選擇曲目</p>
+        <div class="playlist" id="playlist"></div>
+        <p id="status" class="status-text">點擊樂章開始演奏</p>
     </div>
 </div>
 
 <script>
-    /* --- 歌曲清單配置 --- */
-    // 請確保 music 資料夾內有對應檔名的檔案
+    /* --- 歌曲資料設定 (請確保 music 資料夾內檔案名稱正確) --- */
     const songs = [
         { title: "深夜迴廊", file: "song1.mp3" },
         { title: "月光禮拜堂", file: "song2.mp3" },
@@ -157,6 +153,7 @@
 
     let currentSongIndex = 0;
 
+    // 生成播放清單
     function init() {
         songs.forEach((song, index) => {
             const item = document.createElement('div');
@@ -167,38 +164,42 @@
         });
     }
 
+    // 載入歌曲
     function loadSong(index) {
         currentSongIndex = index;
-        // GitHub 路徑：music/檔名
         audio.src = `music/${songs[index].file}`;
         songTitleText.innerText = songs[index].title;
         
-        // 更新 UI
-        document.querySelectorAll('.playlist-item').forEach((el, i) => {
-            el.classList.toggle('active', i === index);
-        });
+        // 更新高亮
+        const items = document.querySelectorAll('.playlist-item');
+        items.forEach((el, i) => el.classList.toggle('active', i === index));
 
-        audio.play().catch(() => {
-            statusText.innerText = "點擊按鈕開始演奏";
+        audio.play().catch(e => {
+            statusText.innerText = "演奏受阻：請點擊按鈕或檢查路徑";
         });
-        playPauseBtn.textContent = '暫停演奏';
-        statusText.innerText = "正在演奏...";
+        playPauseBtn.textContent = '暫停';
+        statusText.innerText = "正在演奏中...";
     }
 
+    // 播放/暫停控制
     playPauseBtn.onclick = () => {
         if (!audio.src) { loadSong(0); return; }
         if (audio.paused) {
             audio.play();
-            playPauseBtn.textContent = '暫停演奏';
+            playPauseBtn.textContent = '暫停';
+            statusText.innerText = "正在演奏中...";
         } else {
             audio.pause();
-            playPauseBtn.textContent = '繼續演奏';
+            playPauseBtn.textContent = '繼續';
+            statusText.innerText = "演奏暫停";
         }
     };
 
+    // 上一首/下一首
     document.getElementById('next').onclick = () => loadSong((currentSongIndex + 1) % songs.length);
     document.getElementById('prev').onclick = () => loadSong((currentSongIndex - 1 + songs.length) % songs.length);
 
+    // 進度條同步
     audio.ontimeupdate = () => {
         if (audio.duration) progressBar.value = (audio.currentTime / audio.duration) * 100;
     };
@@ -207,6 +208,7 @@
         audio.currentTime = (progressBar.value / 100) * audio.duration;
     };
 
+    // 播完自動下一首
     audio.onended = () => document.getElementById('next').onclick();
 
     init();
