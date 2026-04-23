@@ -1,540 +1,263 @@
-<!doctype html>
-<html lang="zh-cn" id="html-tag">
+<!DOCTYPE html>
+<html lang="zh-TW">
 <head>
-    <meta name="google-adsense-account" content="ca-pub-9585799645228530">
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-    <title>2026 官方正规大流量卡中心</title>
-    
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>古堡留聲機 - 完整音樂館</title>
     <style>
-/* --- 頂部 Banner 優化 --- */
-.top-banner {
-    width: 90%;
-    max-width: 1200px;
-    margin: 15px auto;
-    border-radius: 12px;
-    overflow: hidden;
-    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-}
-
-.top-banner img {
-    width: 100%;
-    height: auto;
-    display: block;
-}
-
-        /* --- 基础样式 --- */
-        :root {
-            --primary-blue: #1890ff;
-            --dark-blue: #001529;
-            --bg-gray: #f0f2f5;
-            --text-main: #333;
-        }
-
+        /* --- 視覺風格：古老城堡 --- */
         body {
-            font-family: 'pingfang sc', 'microsoft yahei', sans-serif;
-            background-color: var(--bg-gray);
             margin: 0;
-            display: flex; flex-direction: column; align-items: center;
-            color: var(--text-main); overflow-x: hidden;
-        }
-
-        /* --- 右上角日期 --- */
-        .top-right-date {
-            position: fixed; top: -10px; right: 8px;
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            padding: 8px 15px; border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-            border: 1px solid rgba(255,255,255,0.3);
-            font-size: 14px; font-weight: 500; color: #333; z-index: 9999;
-        }
-
-        /* --- Header --- */
-        header {
-            background: linear-gradient(135deg, var(--primary-blue), var(--dark-blue));
-            color: white; width: 100%; padding: 2rem 0; text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1); margin-bottom: 30px;
-        }
-        header h1 { font-size: 1.8rem; margin: 10px 0; }
-        .lang-switcher button {
-            background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.5);
-            color: white; padding: 5px 16px; border-radius: 20px; cursor: pointer; margin: 0 6px;
-        }
-        .lang-switcher button.active { background: white; color: var(--primary-blue); font-weight: bold; }
-
-        /* --- 8个图片按钮布局 --- */
-        .image-buttons-container {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 15px; width: 90%; max-width: 1000px;
-            margin: 25px auto 10px auto;
-            justify-items: center;
-        }
-
-        .image-item {
-            display: flex; flex-direction: column; align-items: center;
-            text-decoration: none; width: 100%;
-        }
-
-        .btn-label {
-            font-size: 14px; font-weight: bold; color: #fff;
-            margin-bottom: 8px; text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
-        }
-
-        .image-button {
-            width: 100%; max-width: 220px; aspect-ratio: 1 / 1;
-            overflow: hidden; border-radius: 15px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
-            transition: 0.3s; background: #fff;
-        }
-        
-        /* --- [新增] 立即选购文字样式 --- */
-        .buy-now-text {
-            font-size: 15px; /* 稍大一点 */
-            font-weight: bold;
-            color: #ff4d4f; /* 醒目红色 */
-            margin-top: 10px;
-            display: block;
-            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
-            transition: 0.3s;
-            background: rgba(255,255,255,0.9);
-            padding: 2px 8px;
-            border-radius: 10px;
-        }
-
-        .image-item:hover .image-button { transform: translateY(-5px); box-shadow: 0 8px 20px rgba(0,0,0,0.4); }
-        .image-item:hover .buy-now-text { transform: scale(1.05); color: #ff1f1f; }
-        
-        .image-button img { width: 100%; height: 100%; object-fit: cover; }
-
-        /* --- Gallery --- */
-        .gallery {
-            display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 25px; width: 90%; max-width: 1200px; padding-bottom: 50px;
-        }
-        .card { background: white; border-radius: 16px; box-shadow: 0 6px 18px rgba(0,0,0,0.05); overflow: hidden; transition: 0.3s; }
-        .card:hover { transform: translateY(-8px); }
-        .card img { width: 100%; aspect-ratio: 4 / 3; object-fit: contain; background-color: #f9f9f9; }
-        .card-content { padding: 20px; }
-        .card-content h3 a { text-decoration: none; color: var(--primary-blue); }
-
-        /* --- Footer --- */
-        .footer-banner { width: 90%; max-width: 1200px; margin: 20px auto 100px auto; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
-        .footer-banner img { width: 100%; height: auto; display: block; transition: 0.5s; }
-
-        /* --- 漂浮按钮 & 聊天 --- */
-        #chatbot-launcher { position: fixed; left: 20px; bottom: 20px; width: 52px; height: 52px; background: var(--primary-blue); color: white; border-radius: 50%; display: flex; align-items: center; justify-content: center; cursor: pointer; z-index: 1000; }
-        #chatbot-container { position: fixed; left: 20px; bottom: 85px; width: 340px; height: 500px; background: white; border-radius: 16px; box-shadow: 0 15px 40px rgba(0,0,0,0.18); display: none; flex-direction: column; z-index: 1001; overflow: hidden; }
-        #chat-header { background: var(--primary-blue); color: white; padding: 16px; display: flex; justify-content: space-between; }
-        #chat-messages { flex: 1; padding: 15px; overflow-y: auto; background: #f9f9fa; display: flex; flex-direction: column; gap: 10px; }
-        .message-bubble { max-width: 80%; padding: 10px 14px; border-radius: 15px; font-size: 14px; word-wrap: break-word; }
-        .user-message { align-self: flex-end; background: var(--primary-blue); color: white; border-bottom-right-radius: 2px; }
-        .bot-message { align-self: flex-start; background: #eee; color: #333; border-bottom-left-radius: 2px; }
-        .chat-input-area { padding: 12px; border-top: 1px solid #eee; display: flex; gap: 10px; }
-        #message-input { flex: 1; border: 1px solid #ddd; padding: 8px 15px; border-radius: 20px; outline: none; }
-        #send-button { background: var(--primary-blue); color: white; border: none; padding: 0 15px; border-radius: 20px; cursor: pointer; }
-
-        /* --- 侧边栏 & 二维码模态框样式 --- */
-        .side-contact-btn {
-            position: fixed;
-            right: 0;
-            top: 50%;
-            transform: translateY(-50%);
-            background-color: var(--primary-blue);
-            color: white;
-            padding: 12px 6px;
-            border-top-left-radius: 10px;
-            border-bottom-left-radius: 10px;
-            cursor: pointer;
-            box-shadow: -2px 2px 8px rgba(0,0,0,0.2);
-            z-index: 2000;
+            padding: 20px;
             display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 5px;
-            transition: all 0.3s ease;
-        }
-
-        .side-contact-btn:hover {
-            padding-right: 12px;
-            background-color: #0050b3;
-        }
-
-        .side-contact-btn span {
-            writing-mode: vertical-lr;
-            font-size: 13px;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-
-        .qr-modal-overlay {
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.6);
-            backdrop-filter: blur(4px);
-            display: none;
             justify-content: center;
             align-items: center;
-            z-index: 3000;
-            animation: fadeIn 0.3s;
+            min-height: 100vh;
+            background: radial-gradient(circle, #3d3d3d 0%, #0d0d0d 100%);
+            color: #4a3728;
+            font-family: "Times New Roman", serif;
         }
 
-        .qr-modal-content {
-            background: white;
-            width: 300px;
-            padding: 30px 20px;
-            border-radius: 20px;
+        /* 播放器容器：羊皮紙質感 */
+        .player-container {
+            background: #c3a683; 
+            background-image: url('https://www.transparenttextures.com/patterns/paper-fibers.png');
+            padding: 30px;
+            border-radius: 5px;
+            box-shadow: 0 0 50px rgba(0,0,0,0.9), inset 0 0 30px rgba(0,0,0,0.2);
+            border: 8px double #5d4037;
             text-align: center;
-            position: relative;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
-            animation: scaleUp 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            width: 400px;
+            transition: all 0.5s ease;
         }
 
-        .qr-modal-content h3 { margin-top: 0; color: #333; }
-        .qr-modal-content p { color: #666; font-size: 14px; margin-bottom: 0; }
-        
-        .qr-image {
-            width: 200px;
-            height: 200px;
-            margin: 15px auto;
-            display: block;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 5px;
+        .vintage-frame {
+            border: 1px solid #5d4037;
+            padding: 20px;
         }
 
-        .close-qr {
-            position: absolute;
-            top: 10px; right: 15px;
-            font-size: 28px;
-            color: #aaa;
+        h2 {
+            font-variant: small-caps;
+            letter-spacing: 2px;
+            margin-bottom: 5px;
+            color: #3e2723;
+        }
+
+        /* 歌曲清單區域 */
+        .playlist-wrapper {
+            margin-top: 20px;
+            text-align: left;
+        }
+
+        .playlist {
+            max-height: 180px;
+            overflow-y: auto;
+            border: 1px inset #5d4037;
+            padding: 10px;
+            background: rgba(0, 0, 0, 0.05);
+            margin-bottom: 15px;
+        }
+
+        .playlist-item {
             cursor: pointer;
+            padding: 8px;
+            border-bottom: 1px solid rgba(93, 64, 55, 0.2);
+            font-size: 0.9em;
             transition: 0.2s;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
-        .close-qr:hover { color: #ff4d4f; }
 
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
-        @keyframes scaleUp { from { transform: scale(0.8); } to { transform: scale(1); } }
+        .playlist-item:hover {
+            background: rgba(93, 64, 55, 0.1);
+        }
 
-/* --- 响应式 --- */
-@media (max-width: 768px) {
-    .image-buttons-container { 
-        grid-template-columns: repeat(4, 1fr) !important;
-        gap: 8px;
-        width: 96%;
-        padding: 0 2%;
-    }
-    
-    .btn-label { 
-        font-size: 10px !important; 
-        white-space: nowrap;
-        transform: scale(0.9);
-        margin-bottom: 4px;
-    }
+        .playlist-item.active {
+            font-weight: bold;
+            color: #8d1c1c;
+            background: rgba(93, 64, 55, 0.15);
+        }
 
-    /* 移动端缩小立即选购文字 */
-    .buy-now-text {
-        font-size: 11px !important;
-        margin-top: 5px;
-        padding: 1px 4px;
-    }
+        /* 控制按鈕 */
+        .controls {
+            margin: 15px 0;
+        }
 
-    .image-button {
-        border-radius: 8px;
-    }
+        .castle-btn {
+            background: #5d4037;
+            color: #c3a683;
+            border: 1px solid #3e2723;
+            padding: 8px 15px;
+            margin: 5px;
+            cursor: pointer;
+            font-family: inherit;
+            font-weight: bold;
+            transition: 0.3s;
+            display: inline-block;
+            text-decoration: none;
+        }
 
-    header h1 { font-size: 1.2rem; }
-    header p { font-size: 12px; }
-    #chatbot-container { width: 92vw; left: 4vw; }
-}
+        .castle-btn:hover {
+            background: #3e2723;
+            box-shadow: 0 0 10px #8d6e63;
+        }
+
+        /* 進度條樣式 */
+        .progress-container {
+            margin: 15px 0;
+        }
+
+        input[type="range"] {
+            width: 100%;
+            cursor: pointer;
+            accent-color: #5d4037;
+        }
+
+        /* 滾動條美化 (Chrome/Edge) */
+        .playlist::-webkit-scrollbar { width: 5px; }
+        .playlist::-webkit-scrollbar-thumb { background: #5d4037; }
     </style>
 </head>
 <body>
 
+<div class="player-container">
+    <div class="vintage-frame">
+        <h2 id="song-title">城堡留聲機</h2>
+        <p id="song-status">請開啟密藏資料夾</p>
+        
+        <audio id="audio-player"></audio>
 
-<div class="top-banner">
-    <a href="空白" target="_blank">
-        <img src="img/t1.jpg" alt="Banner" onerror="this.src='https://via.placeholder.com/750x300?text=2026+Official+Promotion'">
-    </a>
-</div>
-
-<div id="date-display" class="top-right-date">加载中...</div>
-
-<div class="side-contact-btn" onclick="toggleQrModal()">
-    <i class="fas fa-qrcode fa-lg"></i>
-    <span>联系客服</span>
-</div>
-
-<div id="qrModal" class="qr-modal-overlay" onclick="toggleQrModal()">
-    <div class="qr-modal-content" onclick="event.stopPropagation()">
-        <span class="close-qr" onclick="toggleQrModal()">&times;</span>
-        <h3>扫码添加客服</h3>
-        <img src="img/wechat.jpg" 
-             alt="联系二维码" 
-             class="qr-image"
-             onerror="this.src='https://via.placeholder.com/200?text=QR+Code'">
-        <p>微信扫一扫，一对一咨询</p>
-    </div>
-</div>
-<div id="chatbot-launcher" onclick="togglechat()"><i class="fas fa-robot fa-lg"></i></div>
-
-<div id="chatbot-container">
-    <div id="chat-header">
-        <span><i class="fas fa-headset"></i> 2026 金牌助理</span>
-        <span style="cursor:pointer" onclick="togglechat()">&times;</span>
-    </div>
-    <div id="chat-messages"></div>
-    <div class="chat-input-area">
-        <input type="text" id="message-input" placeholder="想了解哪款流量卡？">
-        <button id="send-button">发送</button>
-    </div>
-</div>
-
-<header>
-    <div class="lang-switcher">
-        <button onclick="switchlang('zh')" id="btn-zh" class="active">中文</button>
-        <button onclick="switchlang('en')" id="btn-en">English</button>
-    </div>
-    <h1 class="lang-text" data-zh="官方正规大流量卡" data-en="Official SIM Cards">
-        <i class="fas fa-fire fa-fade" style="color: #ff4d4f;"></i> 官方正规大流量卡 <i class="fas fa-fire fa-fade" style="color: #ff4d4f;"></i>
-    </h1>
-    <p class="lang-text" data-zh="5G 高速流量 · 海量套餐任你选" data-en="5G High Speed · Multiple Plans">
-        <i class="fas fa-fire fa-beat" style="color: #ff4500;"></i> 5G 高速流量 · 海量套餐任你选 <i class="fas fa-fire fa-beat" style="color: #ff4500;"></i>
-    </p>
-
-    <div class="image-buttons-container">
-        <a href="https://ym.kashijiehaoka.cn/?s=fphsl5k6411798" target="_blank" class="image-item">
-            <span class="btn-label lang-text" data-zh="1号大流量店铺" data-en="No. 1 high-traffic store">1号大流量店铺</span>
-            <div class="image-button"><img src="img/b1.png" alt="1"></div>
-            <span class="buy-now-text">立即选购 &gt;</span>
-        </a>
-        <a href="https://h5.yapingkeji.com/#/pages/sales_index/my_store?mall_id=VO61XQyp%252FUao%252FQPEWWaQ3A%253D%253D&mode=bottom" target="_blank" class="image-item">
-            <span class="btn-label lang-text" data-zh="2号大流量店铺" data-en="No. 2 high-traffic store">2号大流量店铺</span>
-            <div class="image-button"><img src="img/b2.png" alt="2"></div>
-            <span class="buy-now-text">立即选购 &gt;</span>
-        </a>
-        <a href="https://172.lot-ml.com/ProductEn/Index/9a8cb17f0a11c172" target="_blank" class="image-item">
-            <span class="btn-label lang-text" data-zh="3号大流量店铺" data-en="No. 3 high-traffic store">3号大流量店铺</span>
-            <div class="image-button"><img src="img/b3.png" alt="3"></div>
-            <span class="buy-now-text">立即选购 &gt;</span>
-        </a>
-        <a href="https://haoka.kakatx.com/web/#/pages/index/index/?agent_id=215303" target="_blank" class="image-item">
-            <span class="btn-label lang-text" data-zh="4号大流量店铺" data-en="No. 4 high-traffic store">4号大流量店铺</span>
-            <div class="image-button"><img src="img/b4.png" alt="4"></div>
-            <span class="buy-now-text">立即选购 &gt;</span>
-        </a>
-        <a href="https://www.kayi123.com/s/qedZZ6U3" target="_blank" class="image-item">
-            <span class="btn-label lang-text" data-zh="5号大流量店铺" data-en="No. 5 high-traffic store">5号大流量店铺</span>
-            <div class="image-button"><img src="img/b5.png" alt="5"></div>
-            <span class="buy-now-text">立即选购 &gt;</span>
-        </a>
-        <a href="https://ka.kaduoduohk.com/index?k=MExDNGVVRVpKeXM9" target="_blank" class="image-item">
-            <span class="btn-label lang-text" data-zh="6号大流量店铺" data-en="No. 6 high-traffic store">6号大流量店铺</span>
-            <div class="image-button"><img src="img/b6.png" alt="6"></div>
-            <span class="buy-now-text">立即选购 &gt;</span>
-        </a>
-        <a href="https://h5.gantanhao.com/njJC" target="_blank" class="image-item">
-            <span class="btn-label lang-text" data-zh="7号大流量店铺" data-en="No. 7 high-traffic store">7号大流量店铺</span>
-            <div class="image-button"><img src="img/b7.png" alt="7"></div>
-            <span class="buy-now-text">立即选购 &gt;</span>
-        </a>
-        <a href="https://23tui.cn/s/GkajcPxc" target="_blank" class="image-item">
-            <span class="btn-label lang-text" data-zh="8号大流量店铺" data-en="No. 8 high-traffic store">8号大流量店铺</span>
-            <div class="image-button"><img src="img/b8.png" alt="8"></div>
-            <span class="buy-now-text">立即选购 &gt;</span>
-        </a>
-    </div>
-</header>
-
-<div class="gallery">
-    <div class="card">
-        <a href="https://ym.kashijiehaoka.cn/?s=fphsl5k6411798" target="_blank"><img src="img/1.png" alt="card"></a>
-        <div class="card-content">
-            <h3><a href="https://ym.kashijiehaoka.cn/?s=fphsl5k6411798" target="_blank" class="lang-text" data-zh="中国电信 · 百G流量卡" data-en="China Telecom · 100GB">中国电信 · 百G流量卡</a></h3>
-            <p class="lang-text" data-zh="19元起，享百G超大流量。官方正规号卡。" data-en="From $19, 100GB+ data. Official SIM.">19元起，享百G超大流量。官方正规号卡。</p>
+        <div class="progress-container">
+            <input type="range" id="progress-bar" value="0" max="100">
         </div>
-    </div>
-    <div class="card">
-        <a href="https://ym.kashijiehaoka.cn/?s=fphsl5k6411798" target="_blank"><img src="img/2.png" alt="card"></a>
-        <div class="card-content">
-            <h3><a href="https://ym.kashijiehaoka.cn/?s=fphsl5k6411798" target="_blank" class="lang-text" data-zh="中国移动 · 百G流量卡" data-en="China Mobile · 100GB">中国移动 · 百G流量卡</a></h3>
-            <p class="lang-text" data-zh="优质流量卡挑选，稳定可靠。" data-en="Premium data cards, stable and reliable.">优质流量卡挑选，稳定可靠。</p>
+
+        <div class="controls">
+            <button id="prev" class="castle-btn">«</button>
+            <button id="play-pause" class="castle-btn">開始演奏</button>
+            <button id="next" class="castle-btn">»</button>
         </div>
-    </div>
-    <div class="card">
-        <a href="https://ym.kashijiehaoka.cn/?s=fphsl5k6411798" target="_blank"><img src="img/3.png" alt="card"></a>
-        <div class="card-content">
-            <h3><a href="https://ym.kashijiehaoka.cn/?s=fphsl5k6411798" target="_blank" class="lang-text" data-zh="中国联通 · 百G流量卡" data-en="China Unicom · 100GB">中国联通 · 百G流量卡</a></h3>
-            <p class="lang-text" data-zh="大流量卡火热来袭！无套餐，无合约。" data-en="Massive data plans! No contracts.">大流量卡火热来袭！无套餐，无合约。</p>
-        </div>
-    </div>
-    <div class="card">
-        <a href="https://ym.kashijiehaoka.cn/?s=fphsl5k6411798" target="_blank"><img src="img/0.png" alt="card"></a>
-        <div class="card-content">
-            <h3><a href="https://ym.kashijiehaoka.cn/?s=fphsl5k6411798" target="_blank" class="lang-text" data-zh="官方推荐 · 流量王" data-en="Top Recommended">官方推荐 · 流量王</a></h3>
-            <p class="lang-text" data-zh="2026年手机卡新王诞生！热门套餐推荐。" data-en="The new king of SIM cards in 2026!">2026年手机卡新王诞生！热门套餐推荐。</p>
+
+        <label for="file-upload" class="castle-btn" style="font-size: 0.8em;">開啟地下室密藏 (多選 MP3)</label>
+        <input type="file" id="file-upload" multiple accept="audio/*" style="display:none;">
+
+        <div class="playlist-wrapper">
+            <div class="playlist" id="playlist">
+                <div style="text-align: center; color: #888; font-style: italic;">尚未載入樂章...</div>
+            </div>
         </div>
     </div>
 </div>
-
-<div class="footer-banner">
-    <a href="https://ym.kashijiehaoka.cn/?s=fphsl5k6411798" target="_blank">
-        <img src="img/01.png" alt="Banner" onerror="this.src='https://via.placeholder.com/1200x300?text=Official+Promotion'">
-    </a>
-</div>
-
-<a href="https://www.flowcloud.store/txt/1.txt" target="_blank" class="lang-text" data-zh="        隐私声明       " data-en="Privacy Statement">隐私声明</a>
 
 <script>
-/* --- 日期逻辑 --- */
-function showrealtime() {
-   const now = new Date();
-    const weekDays = ["星期日", "星期一", "星期二", "星期三", "星期四", "星期五", "星期六"];
-    document.getElementById('date-display').innerText = `${now.getFullYear()}年${now.getMonth()+1}月${now.getDate()}日 ${weekDays[now.getDay()]}`;
-}
-setInterval(showrealtime, 3600000); showrealtime();
+    /* --- 邏輯說明 ---
+       由於瀏覽器安全限制，前端無法直接掃描資料夾。
+       我們透過 input file (multiple) 讓使用者選取 music 資料夾內的所有檔案，
+       並用 URL.createObjectURL 建立虛擬路徑來播放。
+    ------------------- */
 
-/* --- 语言切换 --- */
-function switchlang(lang) {
-    document.getElementById('html-tag').lang = (lang === 'en' ? 'en-us' : 'zh-cn');
-    document.querySelectorAll('.lang-text').forEach(el => {
-        el.innerText = el.getAttribute('data-' + lang);
+    const audio = document.getElementById('audio-player');
+    const playPauseBtn = document.getElementById('play-pause');
+    const progressBar = document.getElementById('progress-bar');
+    const songTitleText = document.getElementById('song-title');
+    const statusText = document.getElementById('song-status');
+    const playlistContainer = document.getElementById('playlist');
+    const fileUpload = document.getElementById('file-upload');
+
+    let songs = []; // 存放檔案物件
+    let currentSongIndex = 0;
+
+    // 1. 處理檔案選取
+    fileUpload.addEventListener('change', (e) => {
+        const files = Array.from(e.target.files);
+        if (files.length === 0) return;
+
+        songs = files;
+        renderPlaylist();
+        loadSong(0); // 載入第一首
     });
-    document.getElementById('btn-zh').classList.toggle('active', lang === 'zh');
-    document.getElementById('btn-en').classList.toggle('active', lang === 'en');
-}
 
-/* --- [新增] 二维码模态框开关 --- */
-function toggleQrModal() {
-    const modal = document.getElementById('qrModal');
-    // 如果当前是隐藏(display:none 或空)，则显示flex；否则隐藏
-    if (getComputedStyle(modal).display === 'none') {
-        modal.style.display = 'flex';
-    } else {
-        modal.style.display = 'none';
+    // 2. 生成播放清單 UI
+    function renderPlaylist() {
+        playlistContainer.innerHTML = '';
+        songs.forEach((file, index) => {
+            const item = document.createElement('div');
+            item.classList.add('playlist-item');
+            // 去除副檔名顯示
+            const displayName = file.name.replace(/\.[^/.]+$/, "");
+            item.innerText = `${index + 1}. ${displayName}`;
+            item.onclick = () => loadSong(index);
+            playlistContainer.appendChild(item);
+        });
     }
-}
 
-/* --- 聊天机器人 --- */
-function togglechat() {
-    const chat = document.getElementById('chatbot-container');
-    chat.style.display = (chat.style.display === 'none' || chat.style.display === '') ? 'flex' : 'none';
-}
-
-/* --- 50条模拟对话数据库 (FAQ Database) --- */
-const faqDatabase = [
-    // 基础咨询
-    { keywords: ["你好", "在吗", "有人吗", "hello", "hi"], answer: "您好！我是2026金牌选号助理，很高兴为您服务。请问有什么可以帮您？" },
-    { keywords: ["正规", "官方", "靠谱"], answer: "亲，请放心！本站所有号卡均为三大运营商（移动、联通、电信）官方正规卡，支持官方营业厅或APP查询，售后有保障。" },
-    { keywords: ["多少钱", "价格", "费用", "资费"], answer: "我们的套餐非常优惠，大部分仅需19元-29元/月，即可享受100G+的高速流量。具体请点击上方的店铺链接查看详情哦。" },
-    { keywords: ["发货", "快递", "几天到"], answer: "申请成功后，运营商通常在24-48小时内审核发货，一般使用京东或顺丰快递，预计1-3天送达您手中。" },
-    { keywords: ["免运费", "包邮"], answer: "是的，亲！所有号卡均为全国免费包邮送到家。" },
-    
-    // 流量相关
-    { keywords: ["流量", "多少G", "够用吗"], answer: "这里的套餐基本都是百G以上的大流量卡（例如135G、180G甚至295G），刷视频、玩游戏完全够用！" },
-    { keywords: ["限速", "速度"], answer: "这是正规5G卡，只要您当地有5G信号覆盖，就可以享受5G极速网络，不限速（达到几百GB可能会有常规阈值，具体看套餐详情）。" },
-    { keywords: ["通用流量", "定向流量"], answer: "大部分套餐包含大量的通用流量（随便用）和部分定向流量（针对抖音、快手等热门APP）。建议优先选择通用流量多的套餐。" },
-    { keywords: ["热点", "开热点"], answer: "绝大多数套餐支持开启个人热点，具体额度以套餐详情页说明为准。" },
-    
-    // 办理条件
-    { keywords: ["年龄", "几岁", "未成年"], answer: "办理号卡通常需要年满16周岁（部分卡需18周岁），最大一般不超过60周岁。具体限制请在申请页面查看。" },
-    { keywords: ["身份证", "实名"], answer: "根据国家规定，办理手机卡必须实名认证。收到卡后需按照说明书进行激活和实名认证。" },
-    { keywords: ["归属地", "本地"], answer: "大部分互联网优惠卡归属地是随机的（一般为省内或临近省份），但全国流量通用，不影响您正常上网和通话。" },
-    { keywords: ["注销", "不想用了"], answer: "如果您不想用了，可以随时通过运营商官方APP（如中国移动APP）线上办理注销，无需去线下营业厅，非常方便。" },
-    
-    // 选卡建议
-    { keywords: ["移动", "中国移动"], answer: "移动信号覆盖最广，偏远地区也能用。推荐您查看上方的【2号店铺】或【6号店铺】寻找移动好卡。" },
-    { keywords: ["联通", "中国联通"], answer: "联通网速快，性价比高。您可以看看【1号店铺】或【3号店铺】里的联通流量王套餐。" },
-    { keywords: ["电信", "中国电信"], answer: "电信流量给得最足，很多19元甚至9元的超大流量卡。强烈推荐【7号店铺】的电信卡！" },
-    { keywords: ["广电", "中国广电"], answer: "广电是第四大运营商，与移动共用基站，信号有保障，且号段较新。可以在【5号店铺】看看。" },
-    { keywords: ["推荐", "哪款好"], answer: "目前销量最高的是【19元185G】的电信卡和【29元135G】的移动卡。您可以根据您当地哪个运营商信号好来选择。" },
-    
-    // 售后与激活
-    { keywords: ["怎么激活", "激活"], answer: "卡片包裹里都会附带一张激活说明书，通常是扫描二维码或关注公众号进行激活，操作很简单，几分钟就能搞定。" },
-    { keywords: ["充值", "话费"], answer: "激活时通常需要首充50-100元话费才能享受优惠套餐（话费会到账），请务必在专属链接充值，不要直接去支付宝充值哦。" },
-    { keywords: ["合约", "违约金"], answer: "部分超低价套餐可能有6-12个月的合约期（承诺在网），期间注销可能需要违约金。申请详情页会有明确标注，请注意查看。" },
-    { keywords: ["副卡", "办副卡"], answer: "这种特惠互联网大流量卡一般不支持办理副卡，仅限主卡使用。" },
-    { keywords: ["携号转网", "老号"], answer: "非常抱歉，这些优惠套餐仅限新办号码申请，老号码无法直接转成这种套餐。" },
-    
-    // 疑难杂症
-    { keywords: ["审核失败", "被拒"], answer: "如果审核失败，可能是因为：1. 30天内申请过同运营商卡；2. 地址填写不详细（需精确到门牌号）；3. 曾有欠费记录。" },
-    { keywords: ["没信号", "连不上网"], answer: "新卡激活后，建议重启手机或开关飞行模式一次。如果还是没信号，请检查是否打开了数据漫游。" },
-    { keywords: ["诈骗", "骗子"], answer: "我们是正规渠道推广，所有套餐均可拨打10086/10000/10010查询。不涉及任何诈骗行为，请放心。" },
-    { keywords: ["选号", "能选号吗"], answer: "大部分套餐号码是系统随机分配的，少部分联通/电信卡在激活时支持选号。具体看下单页面提示。" },
-    { keywords: ["物联卡", "流量卡"], answer: "我们只做正规手机语音卡（能打电话、能发短信、能上网），不做那种容易锁卡的纯流量物联卡。" },
-    
-    // 其他长尾问题
-    { keywords: ["怎么买", "下单"], answer: "直接点击页面上方的【1号】到【8号】任意店铺按钮，选择您喜欢的套餐，填写收货信息即可免费申请。" },
-    { keywords: ["客服", "人工"], answer: "我就是您的智能助理哦！如果问题太复杂，建议您直接点击店铺链接，联系店铺内的运营商官方人工客服。" },
-    { keywords: ["查单", "进度"], answer: "您可以在刚才申请的店铺链接里找到【订单查询】，输入手机号和身份证号即可查看物流进度。" },
-    { keywords: ["长期", "永久"], answer: "部分套餐是2年优惠期，部分是20年长期套餐。长期套餐非常抢手，建议看到写着“长期”的直接入手！" },
-    { keywords: ["异地", "外地"], answer: "支持异地激活和使用！您可以寄到学校或公司，全国各地都能用（港澳台除外）。" },
-    { keywords: ["学生", "校园卡"], answer: "只要年满16周岁，学生党也可以办理！这些卡比学校营业厅推销的校园卡流量更多、更便宜。" },
-    { keywords: ["保号", "8元套餐"], answer: "我们主要做大流量卡。如果您想保号，建议打运营商电话改8元套餐，然后再办一张我们的卡专门上网，这样最省钱！" },
-    { keywords: ["双卡", "双卡双待"], answer: "是的，现在的手机都支持双卡。您可以把老卡放卡槽1（保号接电话），新办的大流量卡放卡槽2（专门上网）。" },
-    { keywords: ["iphone", "苹果"], answer: "所有智能手机（苹果iPhone、安卓）均可正常使用我们的SIM卡。" },
-    { keywords: ["丢了", "补卡"], answer: "如果卡丢了，您可以去附近的线下官方营业厅异地补卡，和普通手机卡一样。" },
-    { keywords: ["返费", "返利"], answer: "部分套餐通过“首充返费”的形式实现低价（例如充50送120），赠送的话费会分月到账抵扣月租。" },
-    { keywords: ["截止", "下架"], answer: "好套餐随时可能下架！运营商政策变化快，如果您看中了某个套餐，建议尽快申请锁单。" },
-    { keywords: ["收不到", "没收到卡"], answer: "如果超过5天没收到，可能是审核未通过或快递异常。建议去原申请入口查询订单状态。" },
-    { keywords: ["可以改套餐吗"], answer: "激活后，如果想改其他套餐，需要咨询运营商官方政策。通常向下改低资费套餐容易，改这种特惠套餐很难。" },
-    { keywords: ["不用了会怎么样"], answer: "如果激活后不用，会产生欠费，长期欠费会影响征信。建议不用的卡一定要及时注销。" },
-    { keywords: ["多少流量"], answer: "点击上方图片进入店铺，可以看到每张卡的详细流量构成（通用+定向）。" },
-    { keywords: ["真的很便宜"], answer: "是的！这是运营商为了抢占市场推出的互联网专属卡，线下营业厅是办不到的。" },
-    { keywords: ["卡槽"], answer: "标准Nano SIM卡，适用于目前市面上绝大多数手机卡槽。" },
-    { keywords: ["如果", "假设"], answer: "亲，您的问题有点深奥~ 建议您直接办理一张试试，反正大部分卡是免费申请包邮到家的！" },
-    { keywords: ["谢谢", "感谢"], answer: "不客气！希望能帮您选到心仪的大流量卡。祝您生活愉快！" }
-];
-
-class Chatbot {
-    constructor() {
-        this.msgbox = document.getElementById('chat-messages');
-        this.input = document.getElementById('message-input');
-        document.getElementById('send-button').onclick = () => this.handlesend();
-        this.input.onkeypress = (e) => { if(e.key === 'Enter') this.handlesend(); };
-        this.addmessage('尊贵的客人，想了解哪款 5G 大流量卡？<br>您可以问我：<br>👉 “移动哪款好？”<br>👉 “19元有多少流量？”<br>👉 “怎么激活？”', 'bot');
-    }
-    handlesend() {
-        const val = this.input.value.trim();
-        if(!val) return;
-        this.addmessage(val, 'user');
-        this.input.value = '';
+    // 3. 載入並播放歌曲
+    function loadSong(index) {
+        if (songs.length === 0) return;
         
-        // 模拟思考延迟
-        setTimeout(() => {
-            const reply = this.getBotReply(val);
-            this.addmessage(reply, 'bot');
-        }, 600);
-    }
-    
-    // --- 核心：关键词匹配逻辑 ---
-    getBotReply(userText) {
-        // 1. 遍历数据库查找匹配
-        for (const item of faqDatabase) {
-            // 只要匹配到数组中的任意一个关键词
-            for (const keyword of item.keywords) {
-                if (userText.toLowerCase().includes(keyword.toLowerCase())) {
-                    return item.answer;
-                }
-            }
-        }
-        // 2. 默认回复
-        return "这个问题稍微有点难住我了😅。<br>建议您直接点击上方任意【大流量店铺】链接，查看详细的套餐介绍，或者咨询店铺内的官方人工客服哦！";
+        currentSongIndex = index;
+        const file = songs[index];
+        
+        // 釋放之前的 URL 記憶體
+        if (audio.src) URL.revokeObjectURL(audio.src);
+        
+        audio.src = URL.createObjectURL(file);
+        songTitleText.innerText = file.name.replace(/\.[^/.]+$/, "");
+        statusText.innerText = "準備奏樂...";
+
+        // 更新高亮狀態
+        const items = document.querySelectorAll('.playlist-item');
+        items.forEach((el, i) => el.classList.toggle('active', i === index));
+
+        audio.play().catch(() => {
+            statusText.innerText = "點擊按鈕開始演奏";
+        });
+        playPauseBtn.textContent = '暫停演奏';
     }
 
-    addmessage(text, sender) {
-        const div = document.createElement('div');
-        div.className = `message-bubble ${sender === 'user' ? 'user-message' : 'bot-message'}`;
-        div.innerHTML = `<p style="margin:0">${text}</p>`;
-        this.msgbox.appendChild(div);
-        this.msgbox.scrollTop = this.msgbox.scrollHeight;
-    }
-}
-window.onload = () => { new Chatbot(); };
+    // 4. 控制項：播放/暫停
+    playPauseBtn.onclick = () => {
+        if (!audio.src) return;
+        if (audio.paused) {
+            audio.play();
+            playPauseBtn.textContent = '暫停演奏';
+        } else {
+            audio.pause();
+            playPauseBtn.textContent = '繼續演奏';
+        }
+    };
+
+    // 5. 控制項：上一首 & 下一首
+    document.getElementById('next').onclick = () => {
+        if (songs.length === 0) return;
+        let nextIndex = (currentSongIndex + 1) % songs.length;
+        loadSong(nextIndex);
+    };
+
+    document.getElementById('prev').onclick = () => {
+        if (songs.length === 0) return;
+        let prevIndex = (currentSongIndex - 1 + songs.length) % songs.length;
+        loadSong(prevIndex);
+    };
+
+    // 6. 進度條更新
+    audio.ontimeupdate = () => {
+        if (audio.duration) {
+            progressBar.value = (audio.currentTime / audio.duration) * 100;
+        }
+    };
+
+    progressBar.oninput = () => {
+        if (audio.duration) {
+            audio.currentTime = (progressBar.value / 100) * audio.duration;
+        }
+    };
+
+    // 7. 自動下一首
+    audio.onended = () => {
+        document.getElementById('next').onclick();
+    };
 </script>
+
 </body>
 </html>
