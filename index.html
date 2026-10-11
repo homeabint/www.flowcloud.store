@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<title>此域名正在出售，如有意向请留言板留言或联系邮箱emali：githubhome@outlook.com
-This domain is for sale. If interested, please leave a message on the message board or contact the email address: githubhome@outlook.com.</title>
+
 <html lang="zh-TW">
 <head>
     <meta charset="UTF-8">
@@ -49,6 +48,22 @@ This domain is for sale. If interested, please leave a message on the message bo
         
         /* Giscus 容器微調：確保留言板與古堡風格融合 */
         .giscus { margin-top: 20px; }
+
+/* 底部固定文字 */
+.bottom-text {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    padding: 10px 0;
+    text-align: center;
+    color: #c3a683;
+    background: rgba(0, 0, 0, 0.75);
+    font-size: 14px;
+    z-index: 9999;
+    box-sizing: border-box;
+}
+
     </style>
 </head>
 <body>
@@ -159,5 +174,11 @@ This domain is for sale. If interested, please leave a message on the message bo
 
     init();
 </script>
+
+<div class="bottom-text">此域名正在出售，如有意向请留言板留言或联系邮箱emali：githubhome@outlook.com
+This domain is for sale. If interested, please leave a message on the message board or contact the email address: githubhome@outlook.com.</div>
+</body>
+</html>
+
 </body>
 </html>
