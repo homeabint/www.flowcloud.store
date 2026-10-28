@@ -505,11 +505,11 @@
                     <span>📢 欢迎来到极速流动云！请填写本人真实姓名及身份证选号办理，京东/顺丰包邮！</span>
                 </div>
                 <div class="tips">
-                    <a id="externalLinkBtn" class="open-external-btn" href="https://mlhaok.xruiz172.cn/home/c902fa27e49ded12" target="_blank">↗ 新窗口打开当前卡槽</a>
+                    <a id="externalLinkBtn" class="open-external-btn" href="https://mlhaok.xruiz172.cn/home/c902fa27e49ded12" target="_blank">↗ 在新窗口打开当前链接</a>
                 </div>
             </div>
 
-            <!-- 重新嵌入的 3 个号卡链接 iframe -->
+            <!-- 纯 iframe 内嵌方案 -->
             <div class="content-area">
                 <!-- 链接 1 -->
                 <iframe id="iframe1" class="active" 
@@ -583,7 +583,7 @@
             "https://vip.ksjhaoka.com/?s=fphsL5K6411798"
         ];
 
-        // Tab 切换逻辑
+        // Tab 切换逻辑 (纯 iframe 方案)
         function switchTab(index) {
             const btns = document.querySelectorAll('.nav-item');
             const iframes = document.querySelectorAll('iframe');
@@ -618,5 +618,4 @@
         }
 
         function sendQuickPrompt(text) {
-            document.getElementById('chatInput').value = text;
-  
+            document.getElementById('chatInput').value = 
