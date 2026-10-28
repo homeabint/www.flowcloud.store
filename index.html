@@ -14,17 +14,17 @@
         html, body {
             width: 100%;
             height: 100%;
-            overflow: hidden;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
             background-color: #f4f6f9;
             color: #333;
+            overflow-x: hidden;
         }
 
-        /* 整体布局容器 */
+        /* 整体布局容器：允许全页滚动，确保底部绝对可见 */
         .app-container {
             display: flex;
             width: 100vw;
-            height: 100vh;
+            min-height: 100vh;
         }
 
         /* 左侧侧边栏 */
@@ -34,7 +34,6 @@
             color: #ffffff;
             display: flex;
             flex-direction: column;
-            height: 100vh;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
             z-index: 100;
             flex-shrink: 0;
@@ -154,7 +153,6 @@
             color: #2563eb;
         }
 
-        /* 侧边栏底部服务提示（去掉版权，只留提示） */
         .sidebar-footer {
             margin-top: auto;
             padding: 16px;
@@ -177,27 +175,25 @@
             flex: 1;
             display: flex;
             flex-direction: column;
-            height: 100%;
-            overflow: hidden;
+            min-height: 100vh;
             background-color: #f8fafc;
         }
 
         .top-banner {
             background-color: #ffffff;
             border-bottom: 1px solid #e2e8f0;
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 13px;
             color: #475569;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
+            flex-shrink: 0;
         }
 
+        /* 內容 iframe 區域 (高度固定，保證正常操作) */
         .content-area {
-            flex: 1;
-            position: relative;
             width: 100%;
-            height: 100%;
+            height: calc(100vh - 45px - 45px); /* 扣除顶部通告栏与底部版权栏的高度 */
+            min-height: 500px;
+            position: relative;
         }
 
         iframe {
@@ -207,29 +203,28 @@
             display: block;
         }
 
-        /* ================= 底部独立版权与备案栏 ================= */
+        /* ================= 底部独立版权与备案栏（强制在最下方独立展现） ================= */
         .global-footer {
-            height: 32px;
+            height: 45px;
             background-color: #0f172a;
             color: #94a3b8;
             border-top: 1px solid #1e293b;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 11px;
-            gap: 20px;
+            font-size: 12px;
+            gap: 15px;
             flex-shrink: 0;
-            z-index: 50;
+            width: 100%;
         }
 
         .global-footer a {
-            color: #94a3b8;
+            color: #38bdf8;
             text-decoration: none;
-            transition: color 0.2s;
         }
 
         .global-footer a:hover {
-            color: #38bdf8;
+            text-decoration: underline;
         }
 
         /* ================= 左下角 AI 客服组件 ================= */
@@ -453,19 +448,17 @@
             </div>
         </aside>
 
-        <!-- 右侧主要区域（包含顶部通告、iframe主体、以及底部的独立版权栏） -->
+        <!-- 右侧主要区域 -->
         <main class="main-wrapper">
             <div class="top-banner">
-                <div>
-                    <span>📢 欢迎来到极速流动云！请填写本人真实姓名及身份证选号办理，京东/顺丰包邮！</span>
-                </div>
+                <span>📢 欢迎来到极速流动云！请填写本人真实姓名及身份证选号办理，京东/顺丰包邮！</span>
             </div>
 
             <div class="content-area">
                 <iframe id="iframe1" class="active" src="https://mlhaok.xruiz172.cn/home/c902fa27e49ded12"></iframe>
             </div>
 
-            <!-- 📌 独立加在右侧底部的版权与备案栏 -->
+            <!-- 📌 绝对可见的独立底部版权与备案栏 -->
             <footer class="global-footer">
                 <span>Copyright © 2026 极速流动云 版权所有</span>
                 <span>|</span>
