@@ -29,7 +29,7 @@
 
         /* 左侧侧边栏 */
         .sidebar {
-            width: 250px;
+            width: 260px;
             background-color: #0f172a;
             color: #ffffff;
             display: flex;
@@ -39,32 +39,58 @@
             flex-shrink: 0;
         }
 
-        /* Logo 区域 */
-        .brand-header {
-            padding: 20px 16px;
-            border-bottom: 1px solid #1e293b;
+        /* 左上角独立 Logo 容器卡片 */
+        .brand-logo-card {
+            margin: 16px;
+            padding: 12px 14px;
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 12px;
             display: flex;
             align-items: center;
             gap: 12px;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
         }
 
-        .brand-logo-img {
-            width: 44px;
-            height: 44px;
-            object-fit: cover;
-            border-radius: 8px;
-            background-color: #ffffff;
+        /* 独立的 Logo 图标外框 */
+        .logo-box {
+            width: 46px;
+            height: 46px;
+            border-radius: 10px;
+            background: #ffffff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
             flex-shrink: 0;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
         }
 
-        .brand-title-box {
+        .logo-box img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* 图片找不到时的矢量 SVG 云朵标志 */
+        .svg-fallback-logo {
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0284c7 0%, #4f46e5 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .brand-text-box {
             display: flex;
             flex-direction: column;
             overflow: hidden;
         }
 
         .brand-name {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 700;
             color: #ffffff;
             letter-spacing: 0.5px;
@@ -82,7 +108,7 @@
 
         /* 导航组标题 */
         .nav-group-title {
-            padding: 16px 20px 8px 20px;
+            padding: 12px 20px 8px 20px;
             font-size: 12px;
             color: #64748b;
             text-transform: uppercase;
@@ -92,10 +118,10 @@
         /* 导航菜单列表 */
         .nav-list {
             list-style: none;
-            padding: 0 10px;
+            padding: 0 12px;
             display: flex;
             flex-direction: column;
-            gap: 6px;
+            gap: 8px;
         }
 
         /* 导航按钮 */
@@ -172,7 +198,7 @@
         .top-banner {
             background-color: #ffffff;
             border-bottom: 1px solid #e2e8f0;
-            padding: 10px 20px;
+            padding: 12px 20px;
             font-size: 13px;
             color: #475569;
             display: flex;
@@ -222,13 +248,14 @@
                 height: auto;
             }
 
-            .brand-header {
-                padding: 10px 16px;
+            .brand-logo-card {
+                margin: 8px 12px;
+                padding: 8px 10px;
             }
 
-            .brand-logo-img {
-                width: 32px;
-                height: 32px;
+            .logo-box {
+                width: 36px;
+                height: 36px;
             }
 
             .nav-group-title, .sidebar-footer, .top-banner {
@@ -237,7 +264,7 @@
 
             .nav-list {
                 flex-direction: row;
-                padding: 8px;
+                padding: 0 12px 8px 12px;
                 gap: 6px;
                 overflow-x: auto;
             }
@@ -255,14 +282,23 @@
     <div class="app-container">
         <!-- 左侧侧边栏 -->
         <aside class="sidebar">
-            <!-- 品牌 Header（图片路径已更新为 images 文件夹下） -->
-            <div class="brand-header">
-                <img src="images/1793176245289.jpg" alt="极速流动云 Logo" class="brand-logo-img" 
-                     onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
-                <!-- 备用图标：如果图片路径有误或加载失败，会自动显示这个替代标志 -->
-                <div style="display:none; width:44px; height:44px; background:linear-gradient(135deg, #2563eb, #4f46e5); color:#fff; border-radius:8px; align-items:center; justify-content:center; font-weight:bold; font-size:18px; flex-shrink:0;">极</div>
+            
+            <!-- 左上角独立 Logo 结构框 -->
+            <div class="brand-logo-card">
+                <div class="logo-box">
+                    <!-- 优先尝试加载图片 -->
+                    <img src="/images/1793176245289.jpg" alt="极速流动云 Logo" 
+                         onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
+                    
+                    <!-- 图片未成功加载时自动显示的蓝紫渐变矢量极速云图标 -->
+                    <div class="svg-fallback-logo" style="display:none;">
+                        <svg width="28" height="28" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M19.35 10.04C18.67 6.59 15.64 4 12 4 9.11 4 6.6 5.64 5.35 8.04 2.34 8.36 0 10.91 0 14c0 3.31 2.69 6 6 6h13c2.76 0 5-2.24 5-5 0-2.64-2.05-4.78-4.65-4.96zM10 17l-3.5-3.5 1.41-1.41L10 14.17l5.09-5.09L16.5 10.5 10 17z" fill="#FFFFFF"/>
+                        </svg>
+                    </div>
+                </div>
                 
-                <div class="brand-title-box">
+                <div class="brand-text-box">
                     <span class="brand-name">极速流动云</span>
                     <span class="brand-sub">SPEED FLOW CLOUD</span>
                 </div>
