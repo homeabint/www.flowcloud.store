@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
@@ -163,7 +162,7 @@
         /* 底部服务提示 */
         .sidebar-footer {
             margin-top: auto;
-            padding: 16px 16px 90px 16px; /* 留出避开AI聊天框悬浮按钮的空间 */
+            padding: 16px 16px 85px 16px;
             border-top: 1px solid #1e293b;
             font-size: 12px;
             color: #94a3b8;
@@ -252,7 +251,7 @@
             font-weight: 600;
             cursor: pointer;
             box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            transition: all 0.3s ease;
         }
 
         .ai-chat-toggle-btn:hover {
@@ -275,13 +274,13 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
         }
 
-        /* 大尺寸 AI 聊天窗口 */
+        /* 大尺寸 AI 聊天窗口 (420px * 560px) */
         .ai-chat-window {
             position: absolute;
             bottom: 60px;
             left: 0;
-            width: 420px;       /* 用户要求的更加宽大的聊天框 */
-            height: 560px;      /* 充裕的高高度度 */
+            width: 420px;
+            height: 560px;
             background: #ffffff;
             border-radius: 18px;
             box-shadow: 0 20px 50px rgba(15, 23, 42, 0.25);
@@ -305,7 +304,6 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
         }
 
         .ai-chat-header-info {
@@ -323,7 +321,6 @@
             align-items: center;
             justify-content: center;
             font-size: 20px;
-            box-shadow: 0 4px 10px rgba(56, 189, 248, 0.3);
         }
 
         .ai-title {
@@ -359,7 +356,6 @@
             align-items: center;
             justify-content: center;
             font-size: 16px;
-            transition: all 0.2s ease;
         }
 
         .ai-close-btn:hover {
@@ -378,15 +374,6 @@
             gap: 14px;
         }
 
-        /* 滚动条美化 */
-        .ai-chat-messages::-webkit-scrollbar {
-            width: 5px;
-        }
-        .ai-chat-messages::-webkit-scrollbar-thumb {
-            background-color: #cbd5e1;
-            border-radius: 10px;
-        }
-
         .message-bubble {
             max-width: 85%;
             padding: 12px 16px;
@@ -394,12 +381,6 @@
             font-size: 13.5px;
             line-height: 1.5;
             word-break: break-word;
-            animation: fadeIn 0.25s ease;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(6px); }
-            to { opacity: 1; transform: translateY(0); }
         }
 
         .message-bubble.bot {
@@ -408,7 +389,6 @@
             color: #1e293b;
             border: 1px solid #e2e8f0;
             border-top-left-radius: 3px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
         }
 
         .message-bubble.user {
@@ -416,10 +396,9 @@
             background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
             color: #ffffff;
             border-top-right-radius: 3px;
-            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.25);
         }
 
-        /* 快捷提问胶囊按钮 */
+        /* 快捷提问 */
         .quick-prompts {
             padding: 8px 16px 12px 16px;
             background-color: #f8fafc;
@@ -427,10 +406,6 @@
             gap: 8px;
             overflow-x: auto;
             border-top: 1px dashed #e2e8f0;
-        }
-
-        .quick-prompts::-webkit-scrollbar {
-            display: none;
         }
 
         .prompt-chip {
@@ -442,7 +417,6 @@
             font-size: 12px;
             color: #0284c7;
             cursor: pointer;
-            transition: all 0.2s ease;
         }
 
         .prompt-chip:hover {
@@ -467,12 +441,10 @@
             padding: 10px 16px;
             font-size: 13.5px;
             outline: none;
-            transition: border-color 0.2s ease;
         }
 
         .ai-chat-input:focus {
             border-color: #2563eb;
-            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
         }
 
         .ai-send-btn {
@@ -486,62 +458,19 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: transform 0.2s ease, opacity 0.2s ease;
-            box-shadow: 0 4px 10px rgba(37, 99, 235, 0.3);
-        }
-
-        .ai-send-btn:hover {
-            transform: scale(1.06);
         }
 
         /* 移动端响应式 */
         @media (max-width: 768px) {
-            .app-container {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                width: 100%;
-                height: auto;
-            }
-
-            .brand-logo-card {
-                margin: 8px 12px;
-                padding: 8px 10px;
-            }
-
-            .logo-box {
-                width: 36px;
-                height: 36px;
-            }
-
-            .nav-group-title, .sidebar-footer, .top-banner {
-                display: none;
-            }
-
-            .nav-list {
-                flex-direction: row;
-                padding: 0 12px 8px 12px;
-                gap: 6px;
-                overflow-x: auto;
-            }
-
-            .nav-item {
-                padding: 8px 12px;
-                font-size: 13px;
-                white-space: nowrap;
-            }
-
-            .ai-chat-widget {
-                bottom: 15px;
-                left: 15px;
-            }
-
-            .ai-chat-window {
-                width: calc(100vw - 30px);
-                height: 480px;
-                bottom: 55px;
-            }
+            .app-container { flex-direction: column; }
+            .sidebar { width: 100%; height: auto; }
+            .brand-logo-card { margin: 8px 12px; padding: 8px 10px; }
+            .logo-box { width: 36px; height: 36px; }
+            .nav-group-title, .sidebar-footer, .top-banner { display: none; }
+            .nav-list { flex-direction: row; padding: 0 12px 8px 12px; gap: 6px; overflow-x: auto; }
+            .nav-item { padding: 8px 12px; font-size: 13px; white-space: nowrap; }
+            .ai-chat-widget { bottom: 15px; left: 15px; }
+            .ai-chat-window { width: calc(100vw - 30px); height: 480px; bottom: 55px; }
         }
     </style>
 </head>
@@ -550,11 +479,9 @@
     <div class="app-container">
         <!-- 左侧侧边栏 -->
         <aside class="sidebar">
-            
             <!-- 左上角独立 Logo 结构框 -->
             <div class="brand-logo-card">
                 <div class="logo-box">
-                    <!-- 读取 image 目录下的图片 (包含容错 fallback) -->
                     <img src="image/1793176245289.jpg" alt="极速流动云 Logo" 
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div style="display:none; width:100%; height:100%; background:linear-gradient(135deg, #2563eb, #4f46e5); color:#fff; align-items:center; justify-content:center; font-weight:bold; font-size:18px;">极</div>
@@ -672,6 +599,55 @@
     </div>
 
     <script>
-        // 侧边栏Tab切换逻辑
+        // Tab 切换逻辑
         function switchTab(index) {
-            const btns = docum
+            const btns = document.querySelectorAll('.nav-item');
+            const iframes = document.querySelectorAll('iframe');
+            btns.forEach((btn, i) => {
+                if (i === index) {
+                    btn.classList.add('active');
+                    iframes[i].classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                    iframes[i].classList.remove('active');
+                }
+            });
+        }
+
+        // 开关 AI 聊天窗口
+        function toggleChatWindow() {
+            const win = document.getElementById('aiChatWindow');
+            if (win.style.display === 'none' || win.style.display === '') {
+                win.style.display = 'flex';
+            } else {
+                win.style.display = 'none';
+            }
+        }
+
+        // 快捷提问发送
+        function sendQuickPrompt(text) {
+            document.getElementById('chatInput').value = text;
+            sendMessage();
+        }
+
+        // 发送消息及自动智能回复
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const messagesContainer = document.getElementById('chatMessages');
+            const text = input.value.trim();
+
+            if (!text) return;
+
+            // 1. 追加用户消息
+            const userBubble = document.createElement('div');
+            userBubble.className = 'message-bubble user';
+            userBubble.innerText = text;
+            messagesContainer.appendChild(userBubble);
+
+            input.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            // 2. 模拟 AI 思考并自动回复
+            setTimeout(() => {
+                const botBubble = document.createElement('div');
+                botBubble.classNa
