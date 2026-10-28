@@ -26,7 +26,7 @@
             min-height: 100vh;
         }
 
-        /* 左侧侧边栏：加入底部 padding，為左下角的 AI 按鈕留出專屬安全距離 */
+        /* 左侧侧边栏 */
         .sidebar {
             width: 260px;
             background-color: #0f172a;
@@ -39,10 +39,9 @@
             height: 100vh;
             position: sticky;
             top: 0;
-            overflow-y: auto; /* 允许侧边栏内部滚动 */
+            overflow-y: auto;
         }
 
-        /* 侧边栏滚动条美化 */
         .sidebar::-webkit-scrollbar {
             width: 4px;
         }
@@ -164,10 +163,10 @@
             color: #2563eb;
         }
 
-        /* 侧边栏底部：底部加大 padding (80px)，完美避开左下角悬浮的 AI 客服按钮 */
+        /* 侧边栏底部：预留 85px 避让距离 */
         .sidebar-footer {
             margin-top: auto;
-            padding: 14px 16px 85px 16px; 
+            padding: 14px 16px 85px 16px;
             border-top: 1px solid #1e293b;
             font-size: 11px;
             color: #94a3b8;
@@ -250,7 +249,6 @@
             display: block;
         }
 
-        /* 底部全局版权栏 */
         .global-footer {
             height: 45px;
             background-color: #0f172a;
@@ -274,7 +272,7 @@
             text-decoration: underline;
         }
 
-        /* ================= 左下角 AI 客服组件（維持在左下角） ================= */
+        /* AI 客服组件（确保最高层级与点击响应） */
         .ai-chat-widget {
             position: fixed;
             bottom: 25px;
@@ -297,11 +295,14 @@
             cursor: pointer;
             box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
             transition: all 0.3s ease;
-            pointer-events: auto;
         }
 
         .ai-chat-toggle-btn:hover {
             transform: translateY(-2px) scale(1.03);
+        }
+
+        .ai-chat-toggle-btn * {
+            pointer-events: none; /* 防止内部元素拦截点击 */
         }
 
         .ai-chat-toggle-btn .pulse-dot {
@@ -311,7 +312,6 @@
             background-color: #4ade80;
             box-shadow: 0 0 8px #4ade80;
             animation: pulse 2s infinite;
-            pointer-events: none;
         }
 
         @keyframes pulse {
@@ -320,7 +320,6 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
         }
 
-        /* AI 聊天窗口（靠左展開） */
         .ai-chat-window {
             position: absolute;
             bottom: 60px;
@@ -525,7 +524,6 @@
                 </li>
             </ul>
 
-            <!-- 左侧边栏底部：預留安全高度，滾動時可完整查看二維碼 -->
             <div class="sidebar-footer">
                 <div class="sidebar-time-tips">
                     ⏰ 客服时间: 08:00 - 22:00
@@ -561,9 +559,9 @@
         </main>
     </div>
 
-    <!-- 左下角 AI 客服组件（維持在左下角原位） -->
+    <!-- 左下角 AI 客服组件（使用原生 onclick 触发） -->
     <div class="ai-chat-widget">
-        <button class="ai-chat-toggle-btn" id="aiToggleBtn" type="button">
+        <button class="ai-chat-toggle-btn" type="button" onclick="toggleChatWindow(event)">
             <span class="pulse-dot"></span>
             <span id="toggleBtnText">🤖 AI 智能客服</span>
         </button>
@@ -580,7 +578,7 @@
                         </div>
                     </div>
                 </div>
-                <button class="ai-close-btn" id="aiCloseBtn" type="button">✕</button>
+                <button class="ai-close-btn" type="button" onclick="toggleChatWindow(event)">✕</button>
             </div>
 
             <div class="ai-chat-messages" id="chatMessages">
@@ -619,4 +617,87 @@
 
     <script>
         const externalUrls = [
-           
+            "https://mlhaok.xruiz172.cn/home/c902fa27e49ded12",
+            "https://ym3.ksjhaoka.com/?s=fphsL5K6411798",
+            "https://vip.ksjhaoka.com/?s=fphsL5K6411798"
+        ];
+
+        function switchTab(index) {
+            if (index === 0) {
+                document.querySelectorAll('.nav-item').forEach((btn, i) => btn.classList.toggle('active', i === 0));
+                document.getElementById('iframe1').classList.add('active');
+            } else {
+                window.open(externalUrls[index], '_blank');
+            }
+        }
+
+        // 原生开关逻辑：同步修改 display 样式与类名
+        function toggleChatWindow(e) {
+            if (e) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+            const win = document.getElementById('aiChatWindow');
+            const btnText = document.getElementById('toggleBtnText');
+            if (!win) return;
+            
+            const isOpen = win.classList.contains('open');
+            if (isOpen) {
+                win.classList.remove('open');
+                win.style.display = 'none';
+                if (btnText) btnText.innerText = '🤖 AI 智能客服';
+            } else {
+                win.classList.add('open');
+                win.style.display = 'flex';
+                if (btnText) btnText.innerText = '✕ 关闭客服';
+            }
+        }
+
+        function sendQuickPrompt(text) {
+            const input = document.getElementById('chatInput');
+            if (input) {
+                input.value = text;
+                sendMessage();
+            }
+        }
+
+        function sendMessage() {
+            const input = document.getElementById('chatInput');
+            const messagesContainer = document.getElementById('chatMessages');
+            if (!input || !messagesContainer) return;
+            
+            const text = input.value.trim();
+            if (!text) return;
+
+            const userBubble = document.createElement('div');
+            userBubble.className = 'message-bubble user';
+            userBubble.innerText = text;
+            messagesContainer.appendChild(userBubble);
+
+            input.value = '';
+            messagesContainer.scrollTop = messagesContainer.scrollHeight;
+
+            setTimeout(() => {
+                const botBubble = document.createElement('div');
+                botBubble.className = 'message-bubble bot';
+                
+                let reply = '感谢您的咨询！极速流动云所有的号卡均为运营商直发正规卡。若有订单查询需求，可在选号办理页面点击“订单查询”查看详情。';
+                
+                if (text.includes('多久') || text.includes('时间') || text.includes('发货')) {
+                    reply = '⏱️ 下单后运营商会在 24 小时内完成审核并发货，一般 2-3 天即可送达您的家中。';
+                } else if (text.includes('快递')) {
+                    reply = '🚚 系统会根据您的配送地址，随机安排京东快递或顺丰速运免费包邮送到家。';
+                } else if (text.includes('激活')) {
+                    reply = '⚡ 绝大多数号卡随卡附带激活说明书，支持微信扫码或在线自主激活，也有部分由快递员现场协助面对面激活。';
+                } else if (text.includes('查询') || text.includes('订单')) {
+                    reply = '🔍 请在号卡中心页面顶部或菜单中点击“订单查询”，输入下单时填写的手机号与身份证后四位即可实时查询物流状态。';
+                }
+
+                botBubble.innerHTML = reply;
+                messagesContainer.appendChild(botBubble);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 600);
+        }
+    </script>
+</body>
+</html>
