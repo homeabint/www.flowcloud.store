@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>优惠号卡办理中心</title>
+    <title>浩子流量卡 - 正规大流量卡办理中心</title>
     <style>
         * {
             box-sizing: border-box;
@@ -16,44 +16,63 @@
             height: 100%;
             overflow: hidden;
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
-            background-color: #f5f7fa;
+            background-color: #f4f6f9;
+            color: #333;
         }
 
-        /* 整体布局：左右结构 */
+        /* 整体布局 */
         .app-container {
             display: flex;
             width: 100vw;
             height: 100vh;
         }
 
-        /* 左侧侧边栏 */
+        /* 左侧侧边栏 - 浩子流量卡风格 */
         .sidebar {
-            width: 220px;
-            background-color: #1e293b;
+            width: 240px;
+            background-color: #1e293b; /* 深色大气背景 */
             color: #ffffff;
             display: flex;
             flex-direction: column;
-            box-shadow: 2px 0 8px rgba(0, 0, 0, 0.15);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
             z-index: 100;
             flex-shrink: 0;
         }
 
-        /* 侧边栏标题栏 */
-        .sidebar-header {
-            padding: 20px 16px;
-            font-size: 18px;
-            font-weight: bold;
+        /* LOGO 区域 */
+        .brand-logo {
+            padding: 24px 20px 18px 20px;
+            font-size: 20px;
+            font-weight: 700;
             color: #38bdf8;
             border-bottom: 1px solid #334155;
             display: flex;
             align-items: center;
-            gap: 8px;
+            gap: 10px;
         }
 
-        /* 侧边导航列表 */
+        .brand-logo span.tag {
+            font-size: 11px;
+            background-color: #0284c7;
+            color: #fff;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: normal;
+        }
+
+        /* 导航组标题 */
+        .nav-group-title {
+            padding: 16px 20px 8px 20px;
+            font-size: 12px;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+        }
+
+        /* 导航菜单列表 */
         .nav-list {
             list-style: none;
-            padding: 12px 8px;
+            padding: 0 10px;
             display: flex;
             flex-direction: column;
             gap: 6px;
@@ -62,16 +81,16 @@
         /* 导航按钮 */
         .nav-item {
             width: 100%;
-            padding: 12px 16px;
+            padding: 12px 14px;
             border: none;
             background: transparent;
-            color: #94a3b8;
-            font-size: 15px;
+            color: #cbd5e1;
+            font-size: 14px;
             font-weight: 500;
             text-align: left;
             border-radius: 8px;
             cursor: pointer;
-            transition: all 0.25s ease;
+            transition: all 0.2s ease;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -79,35 +98,86 @@
 
         .nav-item:hover {
             background-color: #334155;
-            color: #f8fafc;
+            color: #ffffff;
         }
 
-        /* 选中状态 */
+        /* 选中高亮状态 */
         .nav-item.active {
             background-color: #0284c7;
             color: #ffffff;
+            font-weight: 600;
             box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
         }
 
-        /* 小圆点指示器 */
-        .dot {
-            width: 8px;
-            height: 8px;
-            border-radius: 50%;
-            background-color: transparent;
-            transition: background-color 0.25s ease;
+        .badge {
+            font-size: 11px;
+            padding: 2px 6px;
+            border-radius: 10px;
+            background-color: #334155;
+            color: #94a3b8;
         }
 
-        .nav-item.active .dot {
+        .nav-item.active .badge {
             background-color: #ffffff;
+            color: #0284c7;
         }
 
-        /* 右侧内容展示区 */
-        .main-content {
+        /* 底部服务提示 */
+        .sidebar-footer {
+            margin-top: auto;
+            padding: 16px;
+            border-top: 1px solid #334155;
+            font-size: 12px;
+            color: #94a3b8;
+            line-height: 1.5;
+        }
+
+        .sidebar-footer p {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        /* 右侧主要区域 */
+        .main-wrapper {
             flex: 1;
+            display: flex;
+            flex-direction: column;
             height: 100%;
-            position: relative;
+            overflow: hidden;
+            background-color: #f8fafc;
+        }
+
+        /* 顶部通告栏 */
+        .top-banner {
             background-color: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 10px 20px;
+            font-size: 13px;
+            color: #475569;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .top-banner .tips {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .top-banner .tip-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        /* 内容 iframe 容器 */
+        .content-area {
+            flex: 1;
+            position: relative;
+            width: 100%;
+            height: 100%;
         }
 
         iframe {
@@ -121,7 +191,7 @@
             display: block;
         }
 
-        /* 移动端响应式适配（屏幕较小是转换为顶部栏） */
+        /* 移动端响应式 (屏幕宽 < 768px 时导航放到顶部) */
         @media (max-width: 768px) {
             .app-container {
                 flex-direction: column;
@@ -132,26 +202,26 @@
                 height: auto;
             }
 
-            .sidebar-header {
-                padding: 10px 16px;
+            .brand-logo {
+                padding: 12px 16px;
                 font-size: 16px;
+            }
+
+            .nav-group-title, .sidebar-footer, .top-banner {
+                display: none; /* 移动端隐藏次要信息 */
             }
 
             .nav-list {
                 flex-direction: row;
-                padding: 6px;
-                gap: 4px;
+                padding: 8px;
+                gap: 6px;
+                overflow-x: auto;
             }
 
             .nav-item {
-                padding: 10px 8px;
+                padding: 8px 12px;
                 font-size: 13px;
-                justify-content: center;
-                text-align: center;
-            }
-
-            .dot {
-                display: none;
+                white-space: nowrap;
             }
         }
     </style>
@@ -161,42 +231,64 @@
     <div class="app-container">
         <!-- 左侧侧边栏 -->
         <aside class="sidebar">
-            <div class="sidebar-header">
-                <span>📱 号卡办理中心</span>
+            <div class="brand-logo">
+                <span>⚡ 浩子流量卡</span>
+                <span class="tag">官方</span>
             </div>
+
+            <div class="nav-group-title">选号办理中心</div>
             <ul class="nav-list">
                 <li>
                     <button class="nav-item active" onclick="switchTab(0)">
-                        <span>号卡中心 1</span>
-                        <span class="dot"></span>
+                        <span>🔥 爆款特惠卡</span>
+                        <span class="badge">推荐</span>
                     </button>
                 </li>
                 <li>
                     <button class="nav-item" onclick="switchTab(1)">
-                        <span>号卡中心 2</span>
-                        <span class="dot"></span>
+                        <span>⚡ 快速办理通道</span>
+                        <span class="badge">直连</span>
                     </button>
                 </li>
                 <li>
                     <button class="nav-item" onclick="switchTab(2)">
-                        <span>号卡中心 3</span>
-                        <span class="dot"></span>
+                        <span>👑 VIP 专属选号</span>
+                        <span class="badge">精品</span>
                     </button>
                 </li>
             </ul>
+
+            <div class="sidebar-footer">
+                <p>✅ 运营商直发包邮到家</p>
+                <p>✅ 官方10010/10000可查</p>
+            </div>
         </aside>
 
-        <!-- 右侧内容区域 -->
-        <main class="main-content">
-            <!-- 链接 1：mlhaok -->
-            <iframe id="iframe1" class="active" src="https://mlhaok.xruiz172.cn/home/c902fa27e49ded12" allow="geolocation"></iframe>
-            
-            <!-- 链接 2：ym3 -->
-            <iframe id="iframe2" src="https://ym3.ksjhaoka.com/?s=fphsL5K6411798" allow="geolocation"></iframe>
-            
-            <!-- 链接 3：vip -->
-            <iframe id="iframe3" src="https://vip.ksjhaoka.com/?s=fphsL5K6411798" allow="geolocation"></iframe>
-        </main>
+        <!-- 右侧展示区域 -->
+        <div class="main-wrapper">
+            <!-- 顶部服务保证说明栏 -->
+            <div class="top-banner">
+                <div class="tips">
+                    <span class="tip-item">📢 提示：请填写本人真实姓名及身份证选号办理，京东/顺丰包邮！</span>
+                </div>
+                <div class="tips">
+                    <span class="tip-item">🛡️ 正规号卡</span>
+                    <span class="tip-item">🚀 随时注销</span>
+                </div>
+            </div>
+
+            <!-- 网页内容嵌套 -->
+            <div class="content-area">
+                <!-- 1. mlhaok 链接 -->
+                <iframe id="iframe1" class="active" src="https://mlhaok.xruiz172.cn/home/c902fa27e49ded12" allow="geolocation"></iframe>
+                
+                <!-- 2. ym3 链接 -->
+                <iframe id="iframe2" src="https://ym3.ksjhaoka.com/?s=fphsL5K6411798" allow="geolocation"></iframe>
+                
+                <!-- 3. vip 链接 -->
+                <iframe id="iframe3" src="https://vip.ksjhaoka.com/?s=fphsL5K6411798" allow="geolocation"></iframe>
+            </div>
+        </div>
     </div>
 
     <script>
