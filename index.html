@@ -150,21 +150,58 @@
             color: #2563eb;
         }
 
+        /* 侧边栏底部区域样式优化（支持二维码和客服时间） */
         .sidebar-footer {
             margin-top: auto;
-            padding: 16px;
+            padding: 14px 16px;
             border-top: 1px solid #1e293b;
-            font-size: 11.5px;
+            font-size: 11px;
             color: #94a3b8;
-            line-height: 1.5;
+            line-height: 1.4;
             background-color: #0f172a;
         }
 
-        .service-tips p {
+        .sidebar-time-tips {
+            margin-bottom: 8px;
+            padding: 6px 8px;
+            background: rgba(30, 41, 59, 0.6);
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            text-align: center;
+            color: #38bdf8;
+            font-weight: 600;
+        }
+
+        .sidebar-qrcode-container {
             display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 4px;
+            gap: 8px;
+            justify-content: space-between;
+        }
+
+        .sidebar-qrcode-box {
+            flex: 1;
+            text-align: center;
+            background: #1e293b;
+            padding: 6px;
+            border-radius: 6px;
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .sidebar-qrcode-box img {
+            width: 100%;
+            max-width: 85px;
+            height: 85px;
+            object-fit: contain;
+            border-radius: 4px;
+            display: block;
+            margin: 0 auto;
+        }
+
+        .sidebar-qrcode-box span {
+            font-size: 10px;
+            color: #cbd5e1;
+            margin-top: 3px;
+            display: block;
         }
 
         .main-wrapper {
@@ -258,7 +295,7 @@
             background-color: #4ade80;
             box-shadow: 0 0 8px #4ade80;
             animation: pulse 2s infinite;
-            pointer-events: none; /* 防止子元素拦截点击 */
+            pointer-events: none;
         }
 
         @keyframes pulse {
@@ -267,7 +304,6 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
         }
 
-        /* 聊天窗口控制：默认隐藏，通过 .open 类来激活显示 */
         .ai-chat-window {
             position: absolute;
             bottom: 60px;
@@ -472,10 +508,20 @@
                 </li>
             </ul>
 
+            <!-- 📌 左边栏靠下位置：新增客服时间提示与微信/QQ二维码 -->
             <div class="sidebar-footer">
-                <div class="service-tips">
-                    <p> </p>
-                    <p> </p>
+                <div class="sidebar-time-tips">
+                    ⏰ 客服时间: 08:00 - 22:00
+                </div>
+                <div class="sidebar-qrcode-container">
+                    <div class="sidebar-qrcode-box">
+                        <img src="image/wechat.png" alt="微信客服二维码" onerror="this.src='https://via.placeholder.com/85?text=WeChat'">
+                        <span>微信客服</span>
+                    </div>
+                    <div class="sidebar-qrcode-box">
+                        <img src="image/qq.jpg" alt="QQ客服二维码" onerror="this.src='https://via.placeholder.com/85?text=QQ'">
+                        <span>QQ客服</span>
+                    </div>
                 </div>
             </div>
         </aside>
@@ -567,68 +613,4 @@
                 document.getElementById('iframe1').classList.add('active');
             } else {
                 window.open(externalUrls[index], '_blank');
-            }
-        }
-
-        // 使用类名切换控制，100% 稳定响应
-        function toggleChatWindow() {
-            const win = document.getElementById('aiChatWindow');
-            const btnText = document.getElementById('toggleBtnText');
-            
-            win.classList.toggle('open');
-            
-            if (win.classList.contains('open')) {
-                if(btnText) btnText.innerText = '✕ 关闭客服';
-            } else {
-                if(btnText) btnText.innerText = '🤖 AI 智能客服';
-            }
-        }
-
-        function sendQuickPrompt(text) {
-            const input = document.getElementById('chatInput');
-            if (input) {
-                input.value = text;
-                sendMessage();
-            }
-        }
-
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const messagesContainer = document.getElementById('chatMessages');
-            if (!input || !messagesContainer) return;
-            
-            const text = input.value.trim();
-            if (!text) return;
-
-            const userBubble = document.createElement('div');
-            userBubble.className = 'message-bubble user';
-            userBubble.innerText = text;
-            messagesContainer.appendChild(userBubble);
-
-            input.value = '';
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-            setTimeout(() => {
-                const botBubble = document.createElement('div');
-                botBubble.className = 'message-bubble bot';
-                
-                let reply = '感谢您的咨询！极速流动云所有的号卡均为运营商直发正规卡。若有订单查询需求，可在选号办理页面点击“订单查询”查看详情。';
-                
-                if (text.includes('多久') || text.includes('时间') || text.includes('发货')) {
-                    reply = '⏱️ 下单后运营商会在 24 小时内完成审核并发货，一般 2-3 天即可送达您的家中。';
-                } else if (text.includes('快递')) {
-                    reply = '🚚 系统会根据您的配送地址，随机安排京东快递或顺丰速运免费包邮送到家。';
-                } else if (text.includes('激活')) {
-                    reply = '⚡ 绝大多数号卡随卡附带激活说明书，支持微信扫码或在线自主激活，也有部分由快递员现场协助面对面激活。';
-                } else if (text.includes('查询') || text.includes('订单')) {
-                    reply = '🔍 请在号卡中心页面顶部或菜单中点击“订单查询”，输入下单时填写的手机号与身份证后四位即可实时查询物流状态。';
-                }
-
-                botBubble.innerHTML = reply;
-                messagesContainer.appendChild(botBubble);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }, 600);
-        }
-    </script>
-</body>
-</html>
+ 
