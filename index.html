@@ -189,7 +189,7 @@
         .top-banner {
             background-color: #ffffff;
             border-bottom: 1px solid #e2e8f0;
-            padding: 12px 20px;
+            padding: 10px 20px;
             font-size: 13px;
             color: #475569;
             display: flex;
@@ -203,10 +203,20 @@
             gap: 15px;
         }
 
-        .top-banner .tip-item {
-            display: flex;
-            align-items: center;
-            gap: 4px;
+        .open-external-btn {
+            font-size: 12px;
+            color: #2563eb;
+            background-color: #eff6ff;
+            border: 1px solid #bfdbfe;
+            padding: 4px 10px;
+            border-radius: 6px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.2s;
+        }
+
+        .open-external-btn:hover {
+            background-color: #dbeafe;
         }
 
         /* 内容 iframe 容器 */
@@ -233,11 +243,10 @@
             position: fixed;
             bottom: 20px;
             left: 20px;
-            z-index: 9999;
+            z-index: 99999;
             font-family: inherit;
         }
 
-        /* 悬浮唤起按钮 */
         .ai-chat-toggle-btn {
             display: flex;
             align-items: center;
@@ -274,7 +283,6 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
         }
 
-        /* 大尺寸 AI 聊天窗口 (420px * 560px) */
         .ai-chat-window {
             position: absolute;
             bottom: 60px;
@@ -283,7 +291,7 @@
             height: 560px;
             background: #ffffff;
             border-radius: 18px;
-            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.25);
+            box-shadow: 0 20px 50px rgba(15, 23, 42, 0.3);
             border: 1px solid rgba(226, 232, 240, 0.9);
             display: none;
             flex-direction: column;
@@ -296,7 +304,6 @@
             to { opacity: 1; transform: translateY(0) scale(1); }
         }
 
-        /* 聊天框头部 */
         .ai-chat-header {
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
             color: #ffffff;
@@ -323,26 +330,9 @@
             font-size: 20px;
         }
 
-        .ai-title {
-            font-size: 15px;
-            font-weight: 700;
-        }
-
-        .ai-status {
-            font-size: 11px;
-            color: #38bdf8;
-            display: flex;
-            align-items: center;
-            gap: 5px;
-            margin-top: 2px;
-        }
-
-        .ai-status-dot {
-            width: 6px;
-            height: 6px;
-            background-color: #4ade80;
-            border-radius: 50%;
-        }
+        .ai-title { font-size: 15px; font-weight: 700; }
+        .ai-status { font-size: 11px; color: #38bdf8; display: flex; align-items: center; gap: 5px; margin-top: 2px; }
+        .ai-status-dot { width: 6px; height: 6px; background-color: #4ade80; border-radius: 50%; }
 
         .ai-close-btn {
             background: rgba(255, 255, 255, 0.1);
@@ -358,12 +348,8 @@
             font-size: 16px;
         }
 
-        .ai-close-btn:hover {
-            background: rgba(255, 255, 255, 0.2);
-            color: #ffffff;
-        }
+        .ai-close-btn:hover { background: rgba(255, 255, 255, 0.2); color: #ffffff; }
 
-        /* 消息展示区域 */
         .ai-chat-messages {
             flex: 1;
             padding: 16px;
@@ -398,7 +384,6 @@
             border-top-right-radius: 3px;
         }
 
-        /* 快捷提问 */
         .quick-prompts {
             padding: 8px 16px 12px 16px;
             background-color: #f8fafc;
@@ -419,12 +404,8 @@
             cursor: pointer;
         }
 
-        .prompt-chip:hover {
-            background-color: #f0f9ff;
-            border-color: #0284c7;
-        }
+        .prompt-chip:hover { background-color: #f0f9ff; border-color: #0284c7; }
 
-        /* 底部输入框区域 */
         .ai-chat-input-area {
             padding: 12px 16px;
             background: #ffffff;
@@ -443,9 +424,7 @@
             outline: none;
         }
 
-        .ai-chat-input:focus {
-            border-color: #2563eb;
-        }
+        .ai-chat-input:focus { border-color: #2563eb; }
 
         .ai-send-btn {
             background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
@@ -460,7 +439,6 @@
             justify-content: center;
         }
 
-        /* 移动端响应式 */
         @media (max-width: 768px) {
             .app-container { flex-direction: column; }
             .sidebar { width: 100%; height: auto; }
@@ -479,14 +457,12 @@
     <div class="app-container">
         <!-- 左侧侧边栏 -->
         <aside class="sidebar">
-            <!-- 左上角独立 Logo 结构框 -->
             <div class="brand-logo-card">
                 <div class="logo-box">
                     <img src="image/1793176245289.jpg" alt="极速流动云 Logo" 
                          onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';">
                     <div style="display:none; width:100%; height:100%; background:linear-gradient(135deg, #2563eb, #4f46e5); color:#fff; align-items:center; justify-content:center; font-weight:bold; font-size:18px;">极</div>
                 </div>
-                
                 <div class="brand-text-box">
                     <span class="brand-name">极速流动云</span>
                     <span class="brand-sub">SPEED FLOW CLOUD</span>
@@ -524,40 +500,45 @@
 
         <!-- 右侧展示区域 -->
         <main class="main-wrapper">
-            <!-- 顶部服务保证说明栏 -->
             <div class="top-banner">
                 <div class="tips">
-                    <span class="tip-item">📢 欢迎来到极速流动云！请填写本人真实姓名及身份证选号办理，京东/顺丰包邮！</span>
+                    <span>📢 欢迎来到极速流动云！请填写本人真实姓名及身份证选号办理，京东/顺丰包邮！</span>
                 </div>
                 <div class="tips">
-                    <span class="tip-item">🛡️ 正规号卡</span>
-                    <span class="tip-item">🚀 随时注销</span>
+                    <a id="externalLinkBtn" class="open-external-btn" href="https://mlhaok.xruiz172.cn/home/c902fa27e49ded12" target="_blank">↗ 新窗口打开当前卡槽</a>
                 </div>
             </div>
 
-            <!-- 网页内容嵌套 -->
+            <!-- 重新嵌入的 3 个号卡链接 iframe -->
             <div class="content-area">
-                <!-- 1. mlhaok 链接 -->
-                <iframe id="iframe1" class="active" src="https://mlhaok.xruiz172.cn/home/c902fa27e49ded12" allow="geolocation"></iframe>
+                <!-- 链接 1 -->
+                <iframe id="iframe1" class="active" 
+                        src="https://mlhaok.xruiz172.cn/home/c902fa27e49ded12" 
+                        allow="geolocation; microphone; camera" 
+                        sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-modals"></iframe>
                 
-                <!-- 2. ym3 链接 -->
-                <iframe id="iframe2" src="https://ym3.ksjhaoka.com/?s=fphsL5K6411798" allow="geolocation"></iframe>
+                <!-- 链接 2 -->
+                <iframe id="iframe2" 
+                        src="https://ym3.ksjhaoka.com/?s=fphsL5K6411798" 
+                        allow="geolocation; microphone; camera" 
+                        sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-modals"></iframe>
                 
-                <!-- 3. vip 链接 -->
-                <iframe id="iframe3" src="https://vip.ksjhaoka.com/?s=fphsL5K6411798" allow="geolocation"></iframe>
+                <!-- 链接 3 -->
+                <iframe id="iframe3" 
+                        src="https://vip.ksjhaoka.com/?s=fphsL5K6411798" 
+                        allow="geolocation; microphone; camera" 
+                        sandbox="allow-forms allow-scripts allow-same-origin allow-popups allow-modals"></iframe>
             </div>
         </main>
     </div>
 
-    <!-- 左下角 AI 智能客服小组件 -->
+    <!-- 左下角 AI 客服 -->
     <div class="ai-chat-widget">
-        <!-- 唤起对话框按钮 -->
         <button class="ai-chat-toggle-btn" id="aiToggleBtn" onclick="toggleChatWindow()">
             <span class="pulse-dot"></span>
-            <span>🤖 AI 智能客服</span>
+            <span id="toggleBtnText">🤖 AI 智能客服</span>
         </button>
 
-        <!-- 大尺寸 AI 聊天窗口 -->
         <div class="ai-chat-window" id="aiChatWindow">
             <div class="ai-chat-header">
                 <div class="ai-chat-header-info">
@@ -573,14 +554,12 @@
                 <button class="ai-close-btn" onclick="toggleChatWindow()">✕</button>
             </div>
 
-            <!-- 消息记录区域 -->
             <div class="ai-chat-messages" id="chatMessages">
                 <div class="message-bubble bot">
                     您好！我是极速流动云 AI 智能客服 👋<br>请问关于号卡套餐、办理进度、发货快递、首充激活或注销变更，有什么可以帮您的？
                 </div>
             </div>
 
-            <!-- 快捷推荐提问 -->
             <div class="quick-prompts">
                 <div class="prompt-chip" onclick="sendQuickPrompt('📢 办卡需要多长时间？')">📢 办卡要多久</div>
                 <div class="prompt-chip" onclick="sendQuickPrompt('🚚 发什么快递？')">🚚 发什么快递</div>
@@ -588,7 +567,6 @@
                 <div class="prompt-chip" onclick="sendQuickPrompt('🔍 怎么查询订单？')">🔍 订单查询</div>
             </div>
 
-            <!-- 底部输入栏 -->
             <div class="ai-chat-input-area">
                 <input type="text" id="chatInput" class="ai-chat-input" placeholder="请输入您想咨询的问题..." onkeydown="if(event.key==='Enter') sendMessage()">
                 <button class="ai-send-btn" onclick="sendMessage()">
@@ -599,14 +577,23 @@
     </div>
 
     <script>
+        const targetUrls = [
+            "https://mlhaok.xruiz172.cn/home/c902fa27e49ded12",
+            "https://ym3.ksjhaoka.com/?s=fphsL5K6411798",
+            "https://vip.ksjhaoka.com/?s=fphsL5K6411798"
+        ];
+
         // Tab 切换逻辑
         function switchTab(index) {
             const btns = document.querySelectorAll('.nav-item');
             const iframes = document.querySelectorAll('iframe');
+            const externalBtn = document.getElementById('externalLinkBtn');
+
             btns.forEach((btn, i) => {
                 if (i === index) {
                     btn.classList.add('active');
                     iframes[i].classList.add('active');
+                    if(externalBtn) externalBtn.href = targetUrls[i];
                 } else {
                     btn.classList.remove('active');
                     iframes[i].classList.remove('active');
@@ -617,37 +604,19 @@
         // 开关 AI 聊天窗口
         function toggleChatWindow() {
             const win = document.getElementById('aiChatWindow');
-            if (win.style.display === 'none' || win.style.display === '') {
+            const btnText = document.getElementById('toggleBtnText');
+            
+            const currentDisplay = window.getComputedStyle(win).display;
+            
+            if (currentDisplay === 'none') {
                 win.style.display = 'flex';
+                if(btnText) btnText.innerText = '✕ 关闭客服';
             } else {
                 win.style.display = 'none';
+                if(btnText) btnText.innerText = '🤖 AI 智能客服';
             }
         }
 
-        // 快捷提问发送
         function sendQuickPrompt(text) {
             document.getElementById('chatInput').value = text;
-            sendMessage();
-        }
-
-        // 发送消息及自动智能回复
-        function sendMessage() {
-            const input = document.getElementById('chatInput');
-            const messagesContainer = document.getElementById('chatMessages');
-            const text = input.value.trim();
-
-            if (!text) return;
-
-            // 1. 追加用户消息
-            const userBubble = document.createElement('div');
-            userBubble.className = 'message-bubble user';
-            userBubble.innerText = text;
-            messagesContainer.appendChild(userBubble);
-
-            input.value = '';
-            messagesContainer.scrollTop = messagesContainer.scrollHeight;
-
-            // 2. 模拟 AI 思考并自动回复
-            setTimeout(() => {
-                const botBubble = document.createElement('div');
-                botBubble.classNa
+  
