@@ -191,7 +191,7 @@
         /* 內容 iframe 区域 (高度固定，保證正常操作) */
         .content-area {
             width: 100%;
-            height: calc(100vh - 45px - 45px); /* 扣除顶部通告栏与底部版权栏的高度 */
+            height: calc(100vh - 45px - 45px);
             min-height: 500px;
             position: relative;
         }
@@ -203,7 +203,7 @@
             display: block;
         }
 
-        /* ================= 底部独立版权与备案栏（强制在最下方独立展现） ================= */
+        /* ================= 底部独立版权与备案栏 ================= */
         .global-footer {
             height: 45px;
             background-color: #0f172a;
@@ -609,4 +609,5 @@
             input.value = '';
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
-    
+            setTimeout(() => {
+        
