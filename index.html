@@ -154,19 +154,46 @@
             color: #2563eb;
         }
 
+        /* 底部服务提示与版权备案信息 */
         .sidebar-footer {
             margin-top: auto;
-            padding: 16px 16px 85px 16px;
+            padding: 14px 16px 85px 16px;
             border-top: 1px solid #1e293b;
-            font-size: 12px;
+            font-size: 11.5px;
             color: #94a3b8;
-            line-height: 1.6;
+            line-height: 1.5;
         }
 
-        .sidebar-footer p {
+        .sidebar-footer .service-tips {
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+        }
+
+        .sidebar-footer .service-tips p {
             display: flex;
             align-items: center;
             gap: 6px;
+        }
+
+        /* 版权与备案样式 */
+        .footer-copyright {
+            border-top: 1px dashed rgba(255, 255, 255, 0.1);
+            padding-top: 8px;
+            font-size: 10.5px;
+            color: #64748b;
+            text-align: center;
+        }
+
+        .footer-copyright a {
+            color: #64748b;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .footer-copyright a:hover {
+            color: #38bdf8;
         }
 
         .main-wrapper {
@@ -203,7 +230,7 @@
             display: block;
         }
 
-        /* ================= 左下角 AI 客服组件（确保最高层级 z-index） ================= */
+        /* ================= 左下角 AI 客服组件 ================= */
         .ai-chat-widget {
             position: fixed;
             bottom: 25px;
@@ -247,7 +274,6 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
         }
 
-        /* 大尺寸 AI 聊天窗口 */
         .ai-chat-window {
             position: absolute;
             bottom: 60px;
@@ -258,13 +284,13 @@
             border-radius: 18px;
             box-shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
             border: 1px solid rgba(226, 232, 240, 0.9);
-            display: none; /* 默认隐藏 */
+            display: none;
             flex-direction: column;
             overflow: hidden;
         }
 
         .ai-chat-window.show {
-            display: flex !important; /* 点击后强制显示 */
+            display: flex !important;
         }
 
         .ai-chat-header {
@@ -421,10 +447,17 @@
                 </li>
             </ul>
 
+            <!-- 侧边栏底部：服务保障与版权备案信息 -->
             <div class="sidebar-footer">
-                <p>☁️ 极速流动云 官方服务</p>
-                <p>✅ 运营商直发 包邮到家</p>
-                <p>✅ 官方10010/10000可查</p>
+                <div class="service-tips">
+                    <p>☁️ 极速流动云 官方服务</p>
+                    <p>✅ 运营商直发 包邮到家</p>
+                    <p>✅ 官方10010/10000可查</p>
+                </div>
+                <div class="footer-copyright">
+                    <p>Copyright © 2026 极速流动云</p>
+                    <p style="margin-top: 2px;"><a href="https://beian.miit.gov.cn/" target="_blank">京ICP备XXXXXXXX号</a></p>
+                </div>
             </div>
         </aside>
 
@@ -502,7 +535,6 @@
             }
         }
 
-        // 强化的事件监听与开关控制
         document.addEventListener('DOMContentLoaded', function() {
             const toggleBtn = document.getElementById('aiToggleBtn');
             const closeBtn = document.getElementById('aiCloseBtn');
@@ -568,11 +600,4 @@
                     reply = '🔍 请在号卡中心页面顶部或菜单中点击“订单查询”，输入下单时填写的手机号与身份证后四位即可实时查询物流状态。';
                 }
 
-                botBubble.innerHTML = reply;
-                messagesContainer.appendChild(botBubble);
-                messagesContainer.scrollTop = messagesContainer.scrollHeight;
-            }, 600);
-        }
-    </script>
-</body>
-</html>
+      
