@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>浩子流量卡 - 正规大流量卡办理中心</title>
+    <title>极速流动云 - SPEED FLOW CLOUD 号卡服务平台</title>
     <style>
         * {
             box-sizing: border-box;
@@ -27,37 +27,54 @@
             height: 100vh;
         }
 
-        /* 左侧侧边栏 - 浩子流量卡风格 */
+        /* 左侧侧边栏 */
         .sidebar {
-            width: 240px;
-            background-color: #1e293b; /* 深色大气背景 */
+            width: 250px;
+            background-color: #0f172a; /* 深蓝色背景匹配品牌 */
             color: #ffffff;
             display: flex;
             flex-direction: column;
-            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.15);
             z-index: 100;
             flex-shrink: 0;
         }
 
-        /* LOGO 区域 */
-        .brand-logo {
-            padding: 24px 20px 18px 20px;
-            font-size: 20px;
-            font-weight: 700;
-            color: #38bdf8;
-            border-bottom: 1px solid #334155;
+        /* Logo 区域 */
+        .brand-header {
+            padding: 20px 16px;
+            border-bottom: 1px solid #1e293b;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
 
-        .brand-logo span.tag {
-            font-size: 11px;
-            background-color: #0284c7;
-            color: #fff;
-            padding: 2px 6px;
-            border-radius: 4px;
-            font-weight: normal;
+        .brand-logo-img {
+            width: 44px;
+            height: 44px;
+            object-fit: contain;
+            border-radius: 8px;
+            background-color: #ffffff;
+            padding: 2px;
+        }
+
+        .brand-title-box {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .brand-name {
+            font-size: 16px;
+            font-weight: 700;
+            color: #ffffff;
+            letter-spacing: 0.5px;
+        }
+
+        .brand-sub {
+            font-size: 9px;
+            color: #38bdf8;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-top: 2px;
         }
 
         /* 导航组标题 */
@@ -97,39 +114,39 @@
         }
 
         .nav-item:hover {
-            background-color: #334155;
+            background-color: #1e293b;
             color: #ffffff;
         }
 
-        /* 选中高亮状态 */
+        /* 选中高亮状态（采用 Logo 同款蓝色渐变） */
         .nav-item.active {
-            background-color: #0284c7;
+            background: linear-gradient(135deg, #2563eb 0%, #4f46e5 100%);
             color: #ffffff;
             font-weight: 600;
-            box-shadow: 0 4px 12px rgba(2, 132, 199, 0.3);
+            box-shadow: 0 4px 12px rgba(37, 99, 235, 0.35);
         }
 
         .badge {
             font-size: 11px;
             padding: 2px 6px;
             border-radius: 10px;
-            background-color: #334155;
+            background-color: #1e293b;
             color: #94a3b8;
         }
 
         .nav-item.active .badge {
             background-color: #ffffff;
-            color: #0284c7;
+            color: #2563eb;
         }
 
         /* 底部服务提示 */
         .sidebar-footer {
             margin-top: auto;
             padding: 16px;
-            border-top: 1px solid #334155;
+            border-top: 1px solid #1e293b;
             font-size: 12px;
             color: #94a3b8;
-            line-height: 1.5;
+            line-height: 1.6;
         }
 
         .sidebar-footer p {
@@ -191,7 +208,7 @@
             display: block;
         }
 
-        /* 移动端响应式 (屏幕宽 < 768px 时导航放到顶部) */
+        /* 移动端响应式 */
         @media (max-width: 768px) {
             .app-container {
                 flex-direction: column;
@@ -202,13 +219,17 @@
                 height: auto;
             }
 
-            .brand-logo {
-                padding: 12px 16px;
-                font-size: 16px;
+            .brand-header {
+                padding: 10px 16px;
+            }
+
+            .brand-logo-img {
+                width: 32px;
+                height: 32px;
             }
 
             .nav-group-title, .sidebar-footer, .top-banner {
-                display: none; /* 移动端隐藏次要信息 */
+                display: none;
             }
 
             .nav-list {
@@ -231,12 +252,16 @@
     <div class="app-container">
         <!-- 左侧侧边栏 -->
         <aside class="sidebar">
-            <div class="brand-logo">
-                <span>⚡ 浩子流量卡</span>
-                <span class="tag">官方</span>
+            <!-- 极速流动云 品牌 Header -->
+            <div class="brand-header">
+                <img src="1793176245289.jpg" alt="极速流动云 Logo" class="brand-logo-img">
+                <div class="brand-title-box">
+                    <span class="brand-name">极速流动云</span>
+                    <span class="brand-sub">SPEED FLOW CLOUD</span>
+                </div>
             </div>
 
-            <div class="nav-group-title">选号办理中心</div>
+            <div class="nav-group-title">号卡办理中心</div>
             <ul class="nav-list">
                 <li>
                     <button class="nav-item active" onclick="switchTab(0)">
@@ -259,7 +284,8 @@
             </ul>
 
             <div class="sidebar-footer">
-                <p>✅ 运营商直发包邮到家</p>
+                <p>☁️ 极速流动云 官方服务</p>
+                <p>✅ 运营商直发 包邮到家</p>
                 <p>✅ 官方10010/10000可查</p>
             </div>
         </aside>
@@ -269,7 +295,7 @@
             <!-- 顶部服务保证说明栏 -->
             <div class="top-banner">
                 <div class="tips">
-                    <span class="tip-item">📢 提示：请填写本人真实姓名及身份证选号办理，京东/顺丰包邮！</span>
+                    <span class="tip-item">📢 欢迎来到极速流动云！请填写本人真实姓名及身份证选号办理，京东/顺丰包邮！</span>
                 </div>
                 <div class="tips">
                     <span class="tip-item">🛡️ 正规号卡</span>
