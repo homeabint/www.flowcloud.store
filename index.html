@@ -20,14 +20,12 @@
             overflow-x: hidden;
         }
 
-        /* 整体布局容器：允许全页滚动，确保底部绝对可见 */
         .app-container {
             display: flex;
             width: 100vw;
             min-height: 100vh;
         }
 
-        /* 左侧侧边栏 */
         .sidebar {
             width: 260px;
             background-color: #0f172a;
@@ -39,7 +37,6 @@
             flex-shrink: 0;
         }
 
-        /* 左上角独立 Logo 容器卡片 */
         .brand-logo-card {
             margin: 16px;
             padding: 12px 14px;
@@ -170,7 +167,6 @@
             margin-bottom: 4px;
         }
 
-        /* 右侧主要区域 */
         .main-wrapper {
             flex: 1;
             display: flex;
@@ -188,7 +184,6 @@
             flex-shrink: 0;
         }
 
-        /* 內容 iframe 区域 (高度固定，保證正常操作) */
         .content-area {
             width: 100%;
             height: calc(100vh - 45px - 45px);
@@ -203,7 +198,6 @@
             display: block;
         }
 
-        /* ================= 底部独立版权与备案栏 ================= */
         .global-footer {
             height: 45px;
             background-color: #0f172a;
@@ -227,7 +221,7 @@
             text-decoration: underline;
         }
 
-        /* ================= 左下角 AI 客服组件 ================= */
+        /* AI 客服悬浮窗样式 */
         .ai-chat-widget {
             position: fixed;
             bottom: 25px;
@@ -250,6 +244,7 @@
             cursor: pointer;
             box-shadow: 0 8px 24px rgba(37, 99, 235, 0.4);
             transition: all 0.3s ease;
+            pointer-events: auto;
         }
 
         .ai-chat-toggle-btn:hover {
@@ -263,6 +258,7 @@
             background-color: #4ade80;
             box-shadow: 0 0 8px #4ade80;
             animation: pulse 2s infinite;
+            pointer-events: none; /* 防止子元素拦截点击 */
         }
 
         @keyframes pulse {
@@ -271,6 +267,7 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
         }
 
+        /* 聊天窗口控制：默认隐藏，通过 .open 类来激活显示 */
         .ai-chat-window {
             position: absolute;
             bottom: 60px;
@@ -284,6 +281,10 @@
             display: none;
             flex-direction: column;
             overflow: hidden;
+        }
+
+        .ai-chat-window.open {
+            display: flex !important;
         }
 
         .ai-chat-header {
@@ -337,7 +338,6 @@
         .message-bubble.bot { align-self: flex-start; background: #ffffff; color: #1e293b; border: 1px solid #e2e8f0; border-top-left-radius: 3px; }
         .message-bubble.user { align-self: flex-end; background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%); color: #ffffff; border-top-right-radius: 3px; }
 
-        /* 客服二维码排版样式 */
         .qrcode-container {
             display: flex;
             gap: 12px;
@@ -490,7 +490,6 @@
                 <iframe id="iframe1" class="active" src="https://mlhaok.xruiz172.cn/home/c902fa27e49ded12"></iframe>
             </div>
 
-            <!-- 📌 绝对可见的独立底部版权与备案栏 -->
             <footer class="global-footer">
                 <span>Copyright © 2026 极速流动云 版权所有</span>
                 <span>|</span>
@@ -526,7 +525,6 @@
                     您好！我是极速流动云 AI 智能客服 👋<br>
                     请问关于号卡套餐、办理进度、发货快递、首充激活或注销变更，有什么可以帮您的？（热门套餐不定时上架或下架，如有需求，请添加客服微信或QQ）
                     
-                    <!-- 客服微信与QQ二维码展示区 -->
                     <div class="qrcode-container">
                         <div class="qrcode-box">
                             <img src="image/wechat.png" alt="微信客服二维码" onerror="this.src='https://via.placeholder.com/90?text=WeChat'">
@@ -572,16 +570,17 @@
             }
         }
 
+        // 使用类名切换控制，100% 稳定响应
         function toggleChatWindow() {
             const win = document.getElementById('aiChatWindow');
             const btnText = document.getElementById('toggleBtnText');
             
-            if (win.style.display === 'flex') {
-                win.style.display = 'none';
-                if(btnText) btnText.innerText = '🤖 AI 智能客服';
-            } else {
-                win.style.display = 'flex';
+            win.classList.toggle('open');
+            
+            if (win.classList.contains('open')) {
                 if(btnText) btnText.innerText = '✕ 关闭客服';
+            } else {
+                if(btnText) btnText.innerText = '🤖 AI 智能客服';
             }
         }
 
@@ -610,4 +609,26 @@
             messagesContainer.scrollTop = messagesContainer.scrollHeight;
 
             setTimeout(() => {
-        
+                const botBubble = document.createElement('div');
+                botBubble.className = 'message-bubble bot';
+                
+                let reply = '感谢您的咨询！极速流动云所有的号卡均为运营商直发正规卡。若有订单查询需求，可在选号办理页面点击“订单查询”查看详情。';
+                
+                if (text.includes('多久') || text.includes('时间') || text.includes('发货')) {
+                    reply = '⏱️ 下单后运营商会在 24 小时内完成审核并发货，一般 2-3 天即可送达您的家中。';
+                } else if (text.includes('快递')) {
+                    reply = '🚚 系统会根据您的配送地址，随机安排京东快递或顺丰速运免费包邮送到家。';
+                } else if (text.includes('激活')) {
+                    reply = '⚡ 绝大多数号卡随卡附带激活说明书，支持微信扫码或在线自主激活，也有部分由快递员现场协助面对面激活。';
+                } else if (text.includes('查询') || text.includes('订单')) {
+                    reply = '🔍 请在号卡中心页面顶部或菜单中点击“订单查询”，输入下单时填写的手机号与身份证后四位即可实时查询物流状态。';
+                }
+
+                botBubble.innerHTML = reply;
+                messagesContainer.appendChild(botBubble);
+                messagesContainer.scrollTop = messagesContainer.scrollHeight;
+            }, 600);
+        }
+    </script>
+</body>
+</html>
