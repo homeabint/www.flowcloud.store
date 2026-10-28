@@ -20,14 +20,14 @@
             color: #333;
         }
 
-        /* 整体布局 */
+        /* 整体布局容器 */
         .app-container {
             display: flex;
             width: 100vw;
             height: 100vh;
         }
 
-        /* 左侧侧边栏：完美撑满全高，底部固定 */
+        /* 左侧侧边栏 */
         .sidebar {
             width: 260px;
             background-color: #0f172a;
@@ -154,46 +154,22 @@
             color: #2563eb;
         }
 
-        /* 侧边栏底部（自动沉底，确保完全可见） */
+        /* 侧边栏底部服务提示（去掉版权，只留提示） */
         .sidebar-footer {
             margin-top: auto;
-            padding: 14px 16px;
+            padding: 16px;
             border-top: 1px solid #1e293b;
             font-size: 11.5px;
             color: #94a3b8;
-            line-height: 1.4;
+            line-height: 1.5;
             background-color: #0f172a;
-        }
-
-        .service-tips {
-            margin-bottom: 8px;
-            display: flex;
-            flex-direction: column;
-            gap: 3px;
         }
 
         .service-tips p {
             display: flex;
             align-items: center;
             gap: 6px;
-        }
-
-        .footer-copyright {
-            border-top: 1px dashed rgba(255, 255, 255, 0.1);
-            padding-top: 6px;
-            font-size: 10px;
-            color: #64748b;
-            text-align: center;
-        }
-
-        .footer-copyright a {
-            color: #64748b;
-            text-decoration: none;
-            transition: color 0.2s;
-        }
-
-        .footer-copyright a:hover {
-            color: #38bdf8;
+            margin-bottom: 4px;
         }
 
         /* 右侧主要区域 */
@@ -229,6 +205,31 @@
             height: 100%;
             border: none;
             display: block;
+        }
+
+        /* ================= 底部独立版权与备案栏 ================= */
+        .global-footer {
+            height: 32px;
+            background-color: #0f172a;
+            color: #94a3b8;
+            border-top: 1px solid #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 11px;
+            gap: 20px;
+            flex-shrink: 0;
+            z-index: 50;
+        }
+
+        .global-footer a {
+            color: #94a3b8;
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .global-footer a:hover {
+            color: #38bdf8;
         }
 
         /* ================= 左下角 AI 客服组件 ================= */
@@ -275,7 +276,6 @@
             100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(74, 222, 128, 0); }
         }
 
-        /* 大尺寸 AI 聊天窗口 */
         .ai-chat-window {
             position: absolute;
             bottom: 60px;
@@ -286,7 +286,7 @@
             border-radius: 18px;
             box-shadow: 0 20px 50px rgba(15, 23, 42, 0.35);
             border: 1px solid rgba(226, 232, 240, 0.9);
-            display: none; /* 默认隐藏 */
+            display: none;
             flex-direction: column;
             overflow: hidden;
         }
@@ -398,7 +398,7 @@
             .sidebar { width: 100%; height: auto; }
             .brand-logo-card { margin: 8px 12px; padding: 8px 10px; }
             .logo-box { width: 36px; height: 36px; }
-            .nav-group-title, .sidebar-footer, .top-banner { display: none; }
+            .nav-group-title, .sidebar-footer, .top-banner, .global-footer { display: none; }
             .nav-list { flex-direction: row; padding: 0 12px 8px 12px; gap: 6px; overflow-x: auto; }
             .nav-item { padding: 8px 12px; font-size: 13px; white-space: nowrap; }
             .ai-chat-widget { bottom: 15px; left: 15px; }
@@ -439,26 +439,21 @@
                 </li>
                 <li>
                     <button class="nav-item" onclick="switchTab(2)">
-                        <span>👑 特价 优惠专区 ↗</span>
+                        <span>👑 VIP 专属选号 ↗</span>
                         <span class="badge">精品</span>
                     </button>
                 </li>
             </ul>
 
-            <!-- 侧边栏底部：固定沉底，版权与备案清晰可见 -->
             <div class="sidebar-footer">
                 <div class="service-tips">
                     <p>☁️ 官方直发 包邮到家</p>
                     <p>✅ 官方10010/10000可查</p>
                 </div>
-                <div class="footer-copyright">
-                    <p>Copyright © 2026 极速流动云</p>
-                    <p style="margin-top: 1px;"><a href="https://beian.miit.gov.cn/" target="_blank">京ICP备XXXXXXXX号</a></p>
-                </div>
             </div>
         </aside>
 
-        <!-- 右侧展示区域 -->
+        <!-- 右侧主要区域（包含顶部通告、iframe主体、以及底部的独立版权栏） -->
         <main class="main-wrapper">
             <div class="top-banner">
                 <div>
@@ -469,10 +464,17 @@
             <div class="content-area">
                 <iframe id="iframe1" class="active" src="https://mlhaok.xruiz172.cn/home/c902fa27e49ded12"></iframe>
             </div>
+
+            <!-- 📌 独立加在右侧底部的版权与备案栏 -->
+            <footer class="global-footer">
+                <span>Copyright © 2026 极速流动云 版权所有</span>
+                <span>|</span>
+                <a href="https://beian.miit.gov.cn/" target="_blank">京ICP备XXXXXXXX号</a>
+            </footer>
         </main>
     </div>
 
-    <!-- 左下角 AI 客服组件（100% 可点击响应） -->
+    <!-- 左下角 AI 客服组件 -->
     <div class="ai-chat-widget">
         <button class="ai-chat-toggle-btn" id="aiToggleBtn" onclick="toggleChatWindow()" type="button">
             <span class="pulse-dot"></span>
@@ -496,7 +498,7 @@
 
             <div class="ai-chat-messages" id="chatMessages">
                 <div class="message-bubble bot">
-                    您好！我是极速流动云 AI 智能客服 👋<br>请问关于号卡套餐,办理进度,发货快递,首充激活或注销变更,有什么可以帮您的？
+                    您好！我是极速流动云 AI 智能客服 👋<br>请问关于号卡套餐、办理进度、发货快递、首充激活或注销变更，有什么可以帮您的？
                 </div>
             </div>
 
@@ -532,7 +534,6 @@
             }
         }
 
-        // 绝对可靠的行内全局触发函數，杜絕任何點擊無反應問題
         function toggleChatWindow() {
             const win = document.getElementById('aiChatWindow');
             const btnText = document.getElementById('toggleBtnText');
